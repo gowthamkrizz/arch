@@ -164,6 +164,37 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--primary-color);
 }
 
+/* Login Nav Button - Matching Signup Button Hover */
+.btn-login-nav {
+    background: var(--primary-color);
+    color: #fff;
+    padding: 0.4rem 1.2rem;
+    border-radius: 4px;
+    font-weight: 600;
+    transition: var(--transition);
+    text-decoration: none;
+    font-size: 0.95rem;
+    display: inline-block;
+    text-align: center;
+    line-height: 1.5;
+    border: 1px solid var(--primary-color);
+}
+
+.btn-login-nav:hover {
+    background: transparent;
+    color: var(--primary-color);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(201, 151, 76, 0.3);
+}
+
+.btn-nav {
+    padding: 0.4rem 1.2rem;
+    font-size: 0.95rem;
+    display: inline-block;
+    text-align: center;
+    line-height: 1.5;
+}
+
 /* Mega Menu */
 .mega-menu {
   position: absolute;
@@ -999,11 +1030,11 @@ body.menu-open {
     display: flex;
   }
   
-  /* ===== HERO - FIXED ALIGNMENT ===== */
+  /* ===== HERO - INCREASED SIZE FOR MOBILE ===== */
   .hero {
-    min-height: 90vh !important;
+    min-height: 100vh !important;
     height: auto !important;
-    padding: 5rem 1rem 3rem !important;
+    padding: 6rem 1rem 4rem !important;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
@@ -1011,7 +1042,7 @@ body.menu-open {
   }
   
   .hero .hero-content {
-    padding: 1rem !important;
+    padding: 1.5rem !important;
     width: 100% !important;
     max-width: 100% !important;
     text-align: center !important;
@@ -1022,39 +1053,39 @@ body.menu-open {
   }
   
   .hero .hero-content h1 {
-    font-size: 2rem !important;
+    font-size: 2.4rem !important;
     text-align: center !important;
     width: 100% !important;
     max-width: 100% !important;
     word-wrap: break-word !important;
-    margin-bottom: 0.8rem !important;
+    margin-bottom: 1rem !important;
     line-height: 1.3 !important;
   }
   
   .hero .hero-content p {
-    font-size: 0.95rem !important;
+    font-size: 1.1rem !important;
     text-align: center !important;
     width: 100% !important;
     max-width: 100% !important;
     padding: 0 0.5rem !important;
-    margin-bottom: 1.2rem !important;
-    line-height: 1.5 !important;
+    margin-bottom: 1.5rem !important;
+    line-height: 1.6 !important;
   }
   
   .hero .hero-buttons {
     display: flex !important;
     flex-direction: column !important;
     align-items: center !important;
-    gap: 0.6rem !important;
+    gap: 0.8rem !important;
     width: 100% !important;
   }
   
   .hero .hero-buttons .btn {
     width: 100% !important;
-    max-width: 280px !important;
+    max-width: 300px !important;
     text-align: center !important;
-    padding: 0.7rem 1.2rem !important;
-    font-size: 0.9rem !important;
+    padding: 0.9rem 1.5rem !important;
+    font-size: 1rem !important;
     min-width: auto !important;
     white-space: normal !important;
     word-wrap: break-word !important;
@@ -1062,34 +1093,34 @@ body.menu-open {
   
   .hero .stats-container {
     flex-direction: column !important;
-    gap: 1.2rem !important;
-    padding: 1.2rem !important;
-    margin-top: 1.5rem !important;
+    gap: 1.5rem !important;
+    padding: 1.5rem !important;
+    margin-top: 2rem !important;
     width: 100% !important;
     flex-wrap: wrap !important;
   }
   
   .hero .stats-container .stat-number {
-    font-size: 2rem !important;
+    font-size: 2.2rem !important;
   }
   
   .hero .stats-container .stat-label {
-    font-size: 0.85rem !important;
+    font-size: 0.9rem !important;
   }
   
   /* ===== HERO INTERNAL PAGES ===== */
   .hero-internal {
-    min-height: 40vh !important;
-    height: 40vh !important;
-    padding: 4rem 1rem 2rem !important;
+    min-height: 50vh !important;
+    height: 50vh !important;
+    padding: 5rem 1rem 3rem !important;
   }
   
   .hero-internal .hero-content h1 {
-    font-size: 2rem !important;
+    font-size: 2.2rem !important;
   }
   
   .hero-internal .hero-content p {
-    font-size: 0.9rem !important;
+    font-size: 1rem !important;
   }
   
   .hero-about,
@@ -1097,9 +1128,9 @@ body.menu-open {
   .hero-discoveries,
   .hero-gallery,
   .hero-projects {
-    min-height: 90vh !important;
+    min-height: 100vh !important;
     height: auto !important;
-    padding: 5rem 1rem 3rem !important;
+    padding: 6rem 1rem 4rem !important;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
@@ -1110,7 +1141,7 @@ body.menu-open {
   .hero-discoveries .hero-content,
   .hero-gallery .hero-content,
   .hero-projects .hero-content {
-    padding: 1rem !important;
+    padding: 1.5rem !important;
     width: 100% !important;
     text-align: center !important;
   }
@@ -1120,7 +1151,7 @@ body.menu-open {
   .hero-discoveries .hero-content h1,
   .hero-gallery .hero-content h1,
   .hero-projects .hero-content h1 {
-    font-size: 2.2rem !important;
+    font-size: 2.4rem !important;
     text-align: center !important;
     width: 100% !important;
   }
@@ -1130,7 +1161,7 @@ body.menu-open {
   .hero-discoveries .hero-content p,
   .hero-gallery .hero-content p,
   .hero-projects .hero-content p {
-    font-size: 0.95rem !important;
+    font-size: 1.1rem !important;
     text-align: center !important;
     width: 100% !important;
     padding: 0 0.5rem !important;
@@ -1144,7 +1175,7 @@ body.menu-open {
     display: flex !important;
     flex-direction: column !important;
     align-items: center !important;
-    gap: 0.6rem !important;
+    gap: 0.8rem !important;
     width: 100% !important;
   }
   
@@ -1154,10 +1185,10 @@ body.menu-open {
   .hero-gallery .hero-buttons .btn,
   .hero-projects .hero-buttons .btn {
     width: 100% !important;
-    max-width: 280px !important;
+    max-width: 300px !important;
     text-align: center !important;
-    padding: 0.7rem 1.2rem !important;
-    font-size: 0.9rem !important;
+    padding: 0.9rem 1.5rem !important;
+    font-size: 1rem !important;
   }
   
   /* ===== SECTIONS ===== */
@@ -1342,50 +1373,50 @@ body.menu-open {
     padding: 0.8rem 0;
   }
   
-  /* Hero */
+  /* Hero - Increased size for small mobile */
   .hero {
-    min-height: 80vh !important;
-    padding: 4.5rem 0.5rem 2.5rem !important;
+    min-height: 100vh !important;
+    padding: 5rem 0.5rem 3rem !important;
   }
   
   .hero .hero-content h1 {
-    font-size: 1.6rem !important;
-    margin-bottom: 0.6rem;
+    font-size: 2rem !important;
+    margin-bottom: 0.8rem;
     line-height: 1.3;
   }
   
   .hero .hero-content p {
-    font-size: 0.85rem !important;
-    margin-bottom: 1rem;
-    line-height: 1.5;
+    font-size: 0.95rem !important;
+    margin-bottom: 1.2rem;
+    line-height: 1.6;
   }
   
   .hero .hero-buttons .btn {
-    padding: 0.5rem 1rem;
-    font-size: 0.8rem;
-    max-width: 220px;
+    padding: 0.7rem 1.2rem;
+    font-size: 0.9rem;
+    max-width: 250px;
   }
   
   .hero .stats-container {
-    padding: 0.8rem 0.6rem !important;
-    gap: 0.8rem !important;
-    margin-top: 1rem !important;
+    padding: 1rem 0.8rem !important;
+    gap: 1rem !important;
+    margin-top: 1.5rem !important;
   }
   
   .hero .stats-container .stat-number {
-    font-size: 1.4rem !important;
+    font-size: 1.8rem !important;
   }
   
   .hero .stats-container .stat-label {
-    font-size: 0.65rem !important;
+    font-size: 0.75rem !important;
   }
   
   .hero-internal .hero-content h1 {
-    font-size: 1.6rem !important;
+    font-size: 1.8rem !important;
   }
   
   .hero-internal .hero-content p {
-    font-size: 0.8rem !important;
+    font-size: 0.9rem !important;
   }
   
   .hero-about .hero-content h1,
@@ -1393,7 +1424,7 @@ body.menu-open {
   .hero-discoveries .hero-content h1,
   .hero-gallery .hero-content h1,
   .hero-projects .hero-content h1 {
-    font-size: 1.7rem !important;
+    font-size: 2rem !important;
   }
   
   .hero-about .hero-content p,
@@ -1401,7 +1432,7 @@ body.menu-open {
   .hero-discoveries .hero-content p,
   .hero-gallery .hero-content p,
   .hero-projects .hero-content p {
-    font-size: 0.85rem !important;
+    font-size: 0.95rem !important;
   }
   
   .hero-about .hero-buttons .btn,
@@ -1409,9 +1440,9 @@ body.menu-open {
   .hero-discoveries .hero-buttons .btn,
   .hero-gallery .hero-buttons .btn,
   .hero-projects .hero-buttons .btn {
-    max-width: 220px !important;
-    padding: 0.5rem 1rem !important;
-    font-size: 0.8rem !important;
+    max-width: 250px !important;
+    padding: 0.7rem 1.2rem !important;
+    font-size: 0.9rem !important;
   }
   
   /* Sections */
@@ -1595,15 +1626,21 @@ body.menu-open {
 
 @media screen and (max-width: 360px) {
   .hero .hero-content h1 {
-    font-size: 1.3rem !important;
+    font-size: 1.6rem !important;
   }
   
   .hero .hero-content p {
-    font-size: 0.75rem !important;
+    font-size: 0.85rem !important;
   }
   
   .hero .stats-container .stat-number {
-    font-size: 1.2rem !important;
+    font-size: 1.5rem !important;
+  }
+  
+  .hero .hero-buttons .btn {
+    max-width: 200px !important;
+    padding: 0.6rem 1rem !important;
+    font-size: 0.8rem !important;
   }
   
   .section-title {
@@ -1684,7 +1721,7 @@ body.menu-open {
   .hero-discoveries .hero-content h1,
   .hero-gallery .hero-content h1,
   .hero-projects .hero-content h1 {
-    font-size: 1.3rem !important;
+    font-size: 1.6rem !important;
   }
   
   .hero-about .hero-content p,
@@ -1692,7 +1729,7 @@ body.menu-open {
   .hero-discoveries .hero-content p,
   .hero-gallery .hero-content p,
   .hero-projects .hero-content p {
-    font-size: 0.75rem !important;
+    font-size: 0.85rem !important;
   }
 }
 
