@@ -8,30 +8,6 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <style>
-        .btn-login-nav {
-            background: var(--primary-color);
-            color: #fff;
-            padding: 0.4rem 1.2rem;
-            border-radius: 4px;
-            font-weight: 600;
-            transition: var(--transition);
-            text-decoration: none;
-            font-size: 0.95rem;
-            display: inline-block;
-            text-align: center;
-            line-height: 1.5;
-        }
-        .btn-login-nav:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(201, 151, 76, 0.3);
-        }
-        .btn-nav {
-            padding: 0.4rem 1.2rem;
-            font-size: 0.95rem;
-            display: inline-block;
-            text-align: center;
-            line-height: 1.5;
-        }
         .hero-discoveries {
             min-height: 100vh !important;
             height: 100vh !important;
@@ -49,72 +25,110 @@
             margin-top: 2rem;
         }
 
-        /* Mobile hero fixes - Discoveries (matching other pages) */
+        /* CTA Section Styles */
+        .cta-section {
+            background: linear-gradient(135deg, var(--primary-color), #b8860b);
+            padding: 4rem 2rem;
+            border-radius: 16px;
+            text-align: center;
+            color: #fff;
+            position: relative;
+            overflow: hidden;
+        }
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 300px;
+            height: 300px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 50%;
+        }
+        .cta-section::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -10%;
+            width: 200px;
+            height: 200px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 50%;
+        }
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+        .cta-section p {
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+        .cta-section .btn {
+            background: #fff;
+            color: var(--primary-color);
+            border-color: #fff;
+            position: relative;
+            z-index: 1;
+        }
+        .cta-section .btn:hover {
+            background: transparent;
+            color: #fff;
+            border-color: #fff;
+        }
+        .cta-section .btn-outline-cta {
+            background: transparent;
+            color: #fff;
+            border-color: #fff;
+            margin-left: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+        .cta-section .btn-outline-cta:hover {
+            background: #fff;
+            color: var(--primary-color);
+        }
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 1;
+        }
+
         @media screen and (max-width: 768px) {
-            .hero-discoveries {
-                min-height: 90vh !important;
-                height: auto !important;
-                padding: 5rem 1rem 3rem !important;
-                display: flex !important;
-                align-items: center !important;
-                justify-content: center !important;
+            .cta-section h2 {
+                font-size: 1.8rem;
             }
-            .hero-discoveries .hero-content {
-                padding: 1rem !important;
-                width: 100% !important;
-                text-align: center !important;
+            .cta-section p {
+                font-size: 0.95rem;
             }
-            .hero-discoveries .hero-content h1 {
-                font-size: 2.2rem !important;
-                text-align: center !important;
-                width: 100% !important;
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
             }
-            .hero-discoveries .hero-content p {
-                font-size: 0.95rem !important;
-                text-align: center !important;
-                width: 100% !important;
-                padding: 0 0.5rem !important;
+            .cta-buttons .btn {
+                width: 100%;
+                max-width: 280px;
+                text-align: center;
             }
-            .hero-discoveries .hero-buttons {
-                display: flex !important;
-                flex-direction: column !important;
-                align-items: center !important;
-                gap: 0.6rem !important;
-                width: 100% !important;
-            }
-            .hero-discoveries .hero-buttons .btn {
-                width: 100% !important;
-                max-width: 280px !important;
-                text-align: center !important;
-                padding: 0.7rem 1.2rem !important;
-                font-size: 0.9rem !important;
+            .cta-section .btn-outline-cta {
+                margin-left: 0;
             }
         }
 
         @media screen and (max-width: 420px) {
-            .hero-discoveries {
-                min-height: 80vh !important;
-                padding: 4rem 0.5rem 2rem !important;
+            .cta-section h2 {
+                font-size: 1.4rem;
             }
-            .hero-discoveries .hero-content h1 {
-                font-size: 1.7rem !important;
-            }
-            .hero-discoveries .hero-content p {
-                font-size: 0.85rem !important;
-            }
-            .hero-discoveries .hero-buttons .btn {
-                max-width: 220px !important;
-                padding: 0.5rem 1rem !important;
-                font-size: 0.8rem !important;
-            }
-        }
-
-        @media screen and (max-width: 360px) {
-            .hero-discoveries .hero-content h1 {
-                font-size: 1.4rem !important;
-            }
-            .hero-discoveries .hero-content p {
-                font-size: 0.75rem !important;
+            .cta-section p {
+                font-size: 0.85rem;
             }
         }
     </style>
@@ -125,8 +139,8 @@
 
     <nav class="navbar">
         <a href="index.html" class="logo-btn">
-    <img src="assets/images/stackly-logo.webp" class="logo-img" alt="Stackly Logo">
-</a>
+            <img src="assets/images/stackly-logo.webp" class="logo-img" alt="Stackly Logo">
+        </a>
         <button class="mobile-menu-btn"><i class="fa-solid fa-bars"></i></button>
         <ul class="nav-links">
             <li><a href="index.html">Home</a></li>
@@ -141,7 +155,6 @@
         </ul>
     </nav>
 
-    <!-- Hero Banner - Full Size like Home Page -->
     <section class="hero hero-discoveries">
         <img src="assets/images/b1 (6).webp" alt="Discoveries" class="hero-bg" style="filter: brightness(0.5);">
         <div class="hero-overlay"></div>
@@ -248,29 +261,45 @@
         </div>
     </section>
 
+    <!-- CTA Section -->
+    <section id="cta" style="background: var(--card-bg);">
+        <div class="container">
+            <div class="cta-section" data-aos="fade-up">
+                <h2>Discover More with Us</h2>
+                <p>Join our community of explorers and be the first to know about new discoveries.</p>
+                <div class="cta-buttons">
+                    <a href="signup.html" class="btn">Join Now</a>
+                    <a href="gallery.html" class="btn btn-outline-cta">Explore Gallery</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <footer>
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-col">
-                   <a href="index.html" style="margin-bottom: 1rem; display: inline-block;">
-    <img src="assets/images/stackly-logo.webp" class="footer-logo-img" alt="Stackly Logo">
-</a>
+                    <a href="index.html" style="margin-bottom: 1rem; display: inline-block;">
+                        <img src="assets/images/stackly-logo.webp" class="footer-logo-img" alt="Stackly Logo">
+                    </a>
                     <p>Stackly Archaeology is dedicated to the ethical discovery, preservation, and study of ancient human history.</p>
                     <div class="footer-socials" style="display: flex; gap: 1rem; margin-top: 0.5rem;">
-                    <a href="404.html" title="Facebook" style="color: var(--text-color); font-size: 1.2rem; transition: color 0.3s;" onmouseover="this.style.color='var(--primary-color)'" onmouseout="this.style.color='var(--text-color)'"><i class="fa-brands fa-facebook"></i></a>
-                    <a href="404.html" title="Twitter" style="color: var(--text-color); font-size: 1.2rem; transition: color 0.3s;" onmouseover="this.style.color='var(--primary-color)'" onmouseout="this.style.color='var(--text-color)'"><i class="fa-brands fa-twitter"></i></a>
-                    <a href="404.html" title="Instagram" style="color: var(--text-color); font-size: 1.2rem; transition: color 0.3s;" onmouseover="this.style.color='var(--primary-color)'" onmouseout="this.style.color='var(--text-color)'"><i class="fa-brands fa-instagram"></i></a>
-                    <a href="404.html" title="LinkedIn" style="color: var(--text-color); font-size: 1.2rem; transition: color 0.3s;" onmouseover="this.style.color='var(--primary-color)'" onmouseout="this.style.color='var(--text-color)'"><i class="fa-brands fa-linkedin"></i></a>
-                    <a href="404.html" title="YouTube" style="color: var(--text-color); font-size: 1.2rem; transition: color 0.3s;" onmouseover="this.style.color='var(--primary-color)'" onmouseout="this.style.color='var(--text-color)'"><i class="fa-brands fa-youtube"></i></a>
-                </div>
+                        <a href="404.html" title="Facebook" style="color: var(--text-color); font-size: 1.2rem; transition: color 0.3s;" onmouseover="this.style.color='var(--primary-color)'" onmouseout="this.style.color='var(--text-color)'"><i class="fa-brands fa-facebook"></i></a>
+                        <a href="404.html" title="Twitter" style="color: var(--text-color); font-size: 1.2rem; transition: color 0.3s;" onmouseover="this.style.color='var(--primary-color)'" onmouseout="this.style.color='var(--text-color)'"><i class="fa-brands fa-twitter"></i></a>
+                        <a href="404.html" title="Instagram" style="color: var(--text-color); font-size: 1.2rem; transition: color 0.3s;" onmouseover="this.style.color='var(--primary-color)'" onmouseout="this.style.color='var(--text-color)'"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="404.html" title="LinkedIn" style="color: var(--text-color); font-size: 1.2rem; transition: color 0.3s;" onmouseover="this.style.color='var(--primary-color)'" onmouseout="this.style.color='var(--text-color)'"><i class="fa-brands fa-linkedin"></i></a>
+                        <a href="404.html" title="YouTube" style="color: var(--text-color); font-size: 1.2rem; transition: color 0.3s;" onmouseover="this.style.color='var(--primary-color)'" onmouseout="this.style.color='var(--text-color)'"><i class="fa-brands fa-youtube"></i></a>
+                    </div>
                 </div>
                 <div class="footer-col">
                     <h4>Quick Links</h4>
                     <ul>
+                        <li><a href="index.html">Home</a></li>
                         <li><a href="about.html">About Us</a></li>
                         <li><a href="projects.html">Excavation Projects</a></li>
                         <li><a href="discoveries.html">Discoveries</a></li>
                         <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="contact.html">Contact </a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
@@ -282,7 +311,6 @@
                         <li><a href="404.html">Partner Universities</a></li>
                     </ul>
                 </div>
-                
                 <div class="footer-col">
                     <h4>Contact</h4>
                     <ul>
@@ -294,7 +322,6 @@
             </div>
             <div class="footer-bottom" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; margin-top: 2rem; padding-top: 1rem; border-top: 1px solid var(--glass-border);">
                 <p style="margin: 0;">&copy; 2026 Stackly Archaeology. All rights reserved.</p>
-                
             </div>
         </div>
     </footer>

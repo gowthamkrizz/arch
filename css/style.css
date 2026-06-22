@@ -164,92 +164,35 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--primary-color);
 }
 
-/* Login Nav Button - Matching Signup Button Hover */
-.btn-login-nav {
-    background: var(--primary-color);
-    color: #fff;
-    padding: 0.4rem 1.2rem;
-    border-radius: 4px;
-    font-weight: 600;
-    transition: var(--transition);
-    text-decoration: none;
-    font-size: 0.95rem;
-    display: inline-block;
-    text-align: center;
-    line-height: 1.5;
-    border: 1px solid var(--primary-color);
-}
-
-.btn-login-nav:hover {
-    background: transparent;
-    color: var(--primary-color);
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(201, 151, 76, 0.3);
-}
-
+/* ============================================ */
+/* LOGIN & SIGNUP BUTTONS - SAME SIZE */
+/* ============================================ */
+.btn-login-nav,
 .btn-nav {
-    padding: 0.4rem 1.2rem;
-    font-size: 0.95rem;
-    display: inline-block;
-    text-align: center;
-    line-height: 1.5;
+  padding: 0.4rem 1.2rem !important;
+  font-size: 0.95rem !important;
+  border-radius: 4px !important;
+  font-weight: 600 !important;
+  transition: var(--transition) !important;
+  text-decoration: none !important;
+  display: inline-block !important;
+  text-align: center !important;
+  line-height: 1.5 !important;
+  border: 1px solid var(--primary-color) !important;
+  cursor: pointer !important;
+  background: var(--primary-color) !important;
+  color: #fff !important;
 }
 
-/* Mega Menu */
-.mega-menu {
-  position: absolute;
-  top: 100%;
-  left: -100px;
-  width: 600px;
-  background: var(--card-bg);
-  border: 1px solid var(--glass-border);
-  padding: 2rem;
-  border-radius: 8px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-  display: flex;
-  gap: 2rem;
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(20px);
-  transition: var(--transition);
-  z-index: 100;
+.btn-login-nav:hover,
+.btn-nav:hover {
+  background: transparent !important;
+  color: var(--primary-color) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 5px 15px rgba(201, 151, 76, 0.3) !important;
 }
 
-.nav-links li:hover .mega-menu {
-  opacity: 1;
-  visibility: visible;
-  transform: translateY(10px);
-}
-
-.mega-menu-column {
-  flex: 1;
-}
-
-.mega-menu-column h4 {
-  color: var(--primary-color);
-  margin-bottom: 1rem;
-  font-family: var(--font-main);
-  text-transform: uppercase;
-  font-size: 0.9rem;
-  letter-spacing: 1px;
-}
-
-.mega-menu-column ul {
-  list-style: none;
-  padding: 0;
-}
-
-.mega-menu-column ul li {
-  margin-bottom: 0.5rem;
-  list-style: none;
-}
-
-.mega-menu-column ul li a {
-  font-size: 0.95rem;
-  color: var(--text-color);
-  white-space: nowrap;
-}
-
+/* Theme Toggle */
 .theme-toggle {
   background: none;
   border: none;
@@ -905,10 +848,11 @@ body.menu-open {
     overflow: visible !important;
   }
   
+  /* ===== INCREASE LOGO SIZE ON MOBILE ===== */
   .logo-btn .logo-img {
-    height: 38px !important;
+    height: 48px !important;
     width: auto;
-    max-width: 150px;
+    max-width: 180px;
   }
   
   .mobile-menu-btn {
@@ -989,31 +933,15 @@ body.menu-open {
     border-bottom: none;
   }
   
+  /* Login and Signup buttons in mobile menu - same size */
   .nav-links .btn-login-nav,
   .nav-links .btn-nav {
-    text-align: center;
-    width: 100%;
-    padding: 0.9rem 1rem;
-    margin: 0.3rem 0;
-    font-size: 1rem;
-    white-space: normal;
-  }
-  
-  .nav-links .btn-nav {
-    margin-top: 0.2rem;
-  }
-  
-  /* Close button (X) is the same hamburger button - no toggle inside */
-  .mobile-menu-btn .fa-times {
-    display: none;
-  }
-  
-  .mobile-menu-btn.active .fa-bars {
-    display: none;
-  }
-  
-  .mobile-menu-btn.active .fa-times {
-    display: inline-block;
+    padding: 0.7rem 1.2rem !important;
+    font-size: 1rem !important;
+    text-align: center !important;
+    width: 100% !important;
+    margin: 0.2rem 0 !important;
+    white-space: normal !important;
   }
   
   .mega-menu {
@@ -1352,9 +1280,10 @@ body.menu-open {
     padding: 0.8rem 3% !important;
   }
   
+  /* ===== INCREASE LOGO SIZE ON SMALL MOBILE ===== */
   .logo-btn .logo-img {
-    height: 30px !important;
-    max-width: 120px;
+    height: 40px !important;
+    max-width: 150px;
   }
   
   .mobile-menu-btn {
@@ -1371,6 +1300,13 @@ body.menu-open {
   .nav-links a {
     font-size: 1rem;
     padding: 0.8rem 0;
+  }
+  
+  /* Login and Signup buttons in mobile menu - same size */
+  .nav-links .btn-login-nav,
+  .nav-links .btn-nav {
+    padding: 0.6rem 1rem !important;
+    font-size: 0.9rem !important;
   }
   
   /* Hero - Increased size for small mobile */
@@ -1625,6 +1561,12 @@ body.menu-open {
 /* ============================================ */
 
 @media screen and (max-width: 360px) {
+  /* ===== INCREASE LOGO SIZE ON EXTRA SMALL MOBILE ===== */
+  .logo-btn .logo-img {
+    height: 34px !important;
+    max-width: 130px;
+  }
+  
   .hero .hero-content h1 {
     font-size: 1.6rem !important;
   }
@@ -1655,11 +1597,6 @@ body.menu-open {
     padding: 0.6rem 2% !important;
   }
   
-  .logo-btn .logo-img {
-    height: 24px !important;
-    max-width: 100px;
-  }
-  
   .mobile-menu-btn {
     font-size: 1.1rem !important;
     padding: 8px 12px !important;
@@ -1674,6 +1611,13 @@ body.menu-open {
   .nav-links a {
     font-size: 0.9rem !important;
     padding: 0.6rem 0;
+  }
+  
+  /* Login and Signup buttons in mobile menu - same size */
+  .nav-links .btn-login-nav,
+  .nav-links .btn-nav {
+    padding: 0.5rem 0.8rem !important;
+    font-size: 0.8rem !important;
   }
   
   .btn {

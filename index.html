@@ -5,39 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Stackly Archaeology - Uncovering the Secrets of Ancient Civilizations">
     <title>Stackly Archaeology</title>
-    <!-- Fonts -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <!-- AOS Animation CSS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
-    <!-- Swiper CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
-    <!-- Custom CSS -->
     <link rel="stylesheet" href="css/style.css">
     <style>
-        .btn-login-nav {
-            background: var(--primary-color);
-            color: #fff;
-            padding: 0.4rem 1.2rem;
-            border-radius: 4px;
-            font-weight: 600;
-            transition: var(--transition);
-            text-decoration: none;
-            font-size: 0.95rem;
-            display: inline-block;
-            text-align: center;
-            line-height: 1.5;
-        }
-        .btn-login-nav:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(201, 151, 76, 0.3);
-        }
-        .btn-nav {
-            padding: 0.4rem 1.2rem;
-            font-size: 0.95rem;
-            display: inline-block;
-            text-align: center;
-            line-height: 1.5;
-        }
         .logo-img {
             height: 45px;
             width: auto;
@@ -53,12 +25,181 @@
             width: auto;
             display: block;
         }
-        /* Active nav link color */
         .nav-links a.active-link {
             color: var(--primary-color) !important;
         }
         [data-theme="dark"] .nav-links a.active-link {
             color: var(--primary-color) !important;
+        }
+
+        /* CTA Section Styles */
+        .cta-section {
+            background: linear-gradient(135deg, var(--primary-color), #b8860b);
+            padding: 4rem 2rem;
+            border-radius: 16px;
+            text-align: center;
+            color: #fff;
+            position: relative;
+            overflow: hidden;
+        }
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 300px;
+            height: 300px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 50%;
+        }
+        .cta-section::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -10%;
+            width: 200px;
+            height: 200px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 50%;
+        }
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+        .cta-section p {
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+        .cta-section .btn {
+            background: #fff;
+            color: var(--primary-color);
+            border-color: #fff;
+            position: relative;
+            z-index: 1;
+        }
+        .cta-section .btn:hover {
+            background: transparent;
+            color: #fff;
+            border-color: #fff;
+        }
+        .cta-section .btn-outline-cta {
+            background: transparent;
+            color: #fff;
+            border-color: #fff;
+            margin-left: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+        .cta-section .btn-outline-cta:hover {
+            background: #fff;
+            color: var(--primary-color);
+        }
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* FAQ Section Styles */
+        .faq-section {
+            background: var(--card-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 3rem;
+        }
+        .faq-item {
+            border-bottom: 1px solid var(--glass-border);
+            padding: 1.5rem 0;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+        .faq-item:hover {
+            padding-left: 0.5rem;
+        }
+        .faq-question {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: var(--text-color);
+            transition: var(--transition);
+        }
+        .faq-question i {
+            transition: transform 0.3s ease;
+            color: var(--primary-color);
+        }
+        .faq-item.active .faq-question i {
+            transform: rotate(180deg);
+        }
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.3s ease;
+            color: var(--text-color);
+            opacity: 0.7;
+            line-height: 1.6;
+        }
+        .faq-item.active .faq-answer {
+            max-height: 200px;
+            padding-top: 1rem;
+        }
+
+        @media screen and (max-width: 768px) {
+            .cta-section h2 {
+                font-size: 1.8rem;
+            }
+            .cta-section p {
+                font-size: 0.95rem;
+            }
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            .cta-buttons .btn {
+                width: 100%;
+                max-width: 280px;
+                text-align: center;
+            }
+            .cta-section .btn-outline-cta {
+                margin-left: 0;
+            }
+            .faq-section {
+                padding: 1.5rem;
+            }
+            .faq-question {
+                font-size: 0.95rem;
+            }
+        }
+
+        @media screen and (max-width: 420px) {
+            .cta-section h2 {
+                font-size: 1.4rem;
+            }
+            .cta-section p {
+                font-size: 0.85rem;
+            }
+            .faq-section {
+                padding: 1rem;
+            }
+            .faq-question {
+                font-size: 0.85rem;
+            }
+            .faq-answer {
+                font-size: 0.8rem;
+            }
         }
     </style>
 </head>
@@ -66,7 +207,6 @@
     <div class="spotlight"></div>
     <div class="scroll-progress" id="scroll-progress"></div>
 
-    <!-- Navigation -->
     <nav class="navbar">
         <a href="index.html" class="logo-btn">
             <img src="assets/images/stackly-logo.webp" class="logo-img" alt="Stackly Logo">
@@ -89,7 +229,6 @@
         </ul>
     </nav>
 
-    <!-- 1. Rich Hero Section -->
     <section class="hero" id="home">
         <img src="assets/images/b1 (1).webp" alt="Archaeological Excavation" class="hero-bg">
         <div class="hero-overlay"></div>
@@ -119,7 +258,6 @@
         </div>
     </section>
 
-    <!-- 2. Featured Discoveries -->
     <section id="discoveries">
         <div class="container">
             <h2 class="section-title" data-aos="fade-up">Featured Discoveries</h2>
@@ -146,7 +284,6 @@
         </div>
     </section>
 
-    <!-- 3. Civilization Timeline -->
     <section id="timeline" style="background: var(--card-bg);">
         <div class="container">
             <h2 class="section-title" data-aos="fade-up">Civilization Timeline</h2>
@@ -179,7 +316,6 @@
         </div>
     </section>
 
-    <!-- 4. Archaeological Sites -->
     <section id="sites">
         <div class="container">
             <h2 class="section-title" data-aos="fade-up">Archaeological Sites</h2>
@@ -201,7 +337,6 @@
         </div>
     </section>
 
-    <!-- 5. Research & Excavation Projects -->
     <section id="research" style="background: var(--card-bg);">
         <div class="container">
             <h2 class="section-title" data-aos="fade-up">Research & Projects</h2>
@@ -231,7 +366,6 @@
         </div>
     </section>
 
-    <!-- 6. Museum Collection (Swiper Carousel) -->
     <section id="museum">
         <div class="container">
             <h2 class="section-title">Museum Collection</h2>
@@ -268,13 +402,11 @@
                         </div>
                     </div>
                 </div>
-                <!-- Add Pagination -->
                 <div class="swiper-pagination"></div>
             </div>
         </div>
     </section>
 
-    <!-- 7. Latest News & Findings & Testimonials -->
     <section id="news" style="background: var(--card-bg);">
         <div class="container">
             <div class="grid-2">
@@ -312,7 +444,74 @@
         </div>
     </section>
 
-    <!-- Footer -->
+    <!-- CTA Section -->
+    <section id="cta">
+        <div class="container">
+            <div class="cta-section" data-aos="fade-up">
+                <h2>Ready to Join the Adventure?</h2>
+                <p>Become part of our community and help us uncover the secrets of the past. Whether you're a student, researcher, or history enthusiast, there's a place for you at Stackly.</p>
+                <div class="cta-buttons">
+                    <a href="404.html" class="btn">Get Started Today</a>
+                    <a href="404.html" class="btn btn-outline-cta">Contact Us</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" style="background: var(--card-bg);">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Frequently Asked Questions</h2>
+            <div class="faq-section" data-aos="fade-up" data-aos-delay="100">
+                <div class="faq-item active">
+                    <div class="faq-question">
+                        <span>How can I participate in an excavation?</span>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        We offer volunteer programs for students and enthusiasts. Visit our Contact page to learn more about upcoming opportunities.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Are the artifacts displayed in museums?</span>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        Yes, all recovered artifacts are either returned to their country of origin or displayed in partner museums worldwide.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>How is Stackly Archaeology funded?</span>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        Our work is funded through a combination of research grants, university partnerships, and private donations.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Can I access the digital archives?</span>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        Yes! Our digital archives are open to researchers and the public. Sign up for a free account to explore our collection.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Do you accept research proposals?</span>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        Absolutely. We welcome collaboration with researchers worldwide. Submit your proposal through our Contact page.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <footer>
         <div class="container">
             <div class="footer-grid">
@@ -332,6 +531,7 @@
                 <div class="footer-col">
                     <h4>Quick Links</h4>
                     <ul>
+                              <li><a href="index.html">home</a></li>
                         <li><a href="about.html">About Us</a></li>
                         <li><a href="projects.html">Projects</a></li>
                         <li><a href="discoveries.html">Discoveries</a></li>
@@ -365,7 +565,29 @@
 
     <button id="backToTop" aria-label="Back to Top"><i class="fa-solid fa-arrow-up"></i></button>
 
-    <!-- Scripts -->
+    <script>
+        // FAQ Accordion functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const faqItems = document.querySelectorAll('.faq-item');
+            
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question');
+                
+                question.addEventListener('click', function() {
+                    // Close all other items
+                    faqItems.forEach(otherItem => {
+                        if (otherItem !== item && otherItem.classList.contains('active')) {
+                            otherItem.classList.remove('active');
+                        }
+                    });
+                    
+                    // Toggle current item
+                    item.classList.toggle('active');
+                });
+            });
+        });
+    </script>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
     <script src="js/main.js"></script>

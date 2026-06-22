@@ -8,31 +8,6 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <style>
-        .btn-login-nav {
-            background: var(--primary-color);
-            color: #fff;
-            padding: 0.4rem 1.2rem;
-            border-radius: 4px;
-            font-weight: 600;
-            transition: var(--transition);
-            text-decoration: none;
-            font-size: 0.95rem;
-            display: inline-block;
-            text-align: center;
-            line-height: 1.5;
-        }
-        .btn-login-nav:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(201, 151, 76, 0.3);
-        }
-        .btn-nav {
-            padding: 0.4rem 1.2rem;
-            font-size: 0.95rem;
-            display: inline-block;
-            text-align: center;
-            line-height: 1.5;
-        }
-        /* Contact page hero - full size like home page */
         .hero-contact {
             min-height: 100vh !important;
             height: 100vh !important;
@@ -44,11 +19,138 @@
         .hero-contact .hero-content p {
             font-size: 1.2rem !important;
         }
-        /* Center the Submit Research Proposal button */
         .research-btn-wrapper {
             display: flex;
             justify-content: center;
             margin-top: 2rem;
+        }
+
+        /* CTA Section Styles */
+        .cta-section {
+            background: linear-gradient(135deg, var(--primary-color), #b8860b);
+            padding: 4rem 2rem;
+            border-radius: 16px;
+            text-align: center;
+            color: #fff;
+            position: relative;
+            overflow: hidden;
+        }
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 300px;
+            height: 300px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 50%;
+        }
+        .cta-section::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -10%;
+            width: 200px;
+            height: 200px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 50%;
+        }
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+        .cta-section p {
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+        .cta-section .btn {
+            background: #fff;
+            color: var(--primary-color);
+            border-color: #fff;
+            position: relative;
+            z-index: 1;
+        }
+        .cta-section .btn:hover {
+            background: transparent;
+            color: #fff;
+            border-color: #fff;
+        }
+        .cta-section .btn-outline-cta {
+            background: transparent;
+            color: #fff;
+            border-color: #fff;
+            margin-left: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+        .cta-section .btn-outline-cta:hover {
+            background: #fff;
+            color: var(--primary-color);
+        }
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Form validation styles */
+        .form-group.error input,
+        .form-group.error textarea {
+            border-color: #ff4444 !important;
+            box-shadow: 0 0 0 3px rgba(255, 68, 68, 0.2);
+        }
+        .form-group.success input,
+        .form-group.success textarea {
+            border-color: #00c851 !important;
+            box-shadow: 0 0 0 3px rgba(0, 200, 81, 0.2);
+        }
+        .error-message {
+            color: #ff4444;
+            font-size: 0.85rem;
+            margin-top: 0.3rem;
+            display: none;
+        }
+        .error-message.show {
+            display: block;
+        }
+
+        @media screen and (max-width: 768px) {
+            .cta-section h2 {
+                font-size: 1.8rem;
+            }
+            .cta-section p {
+                font-size: 0.95rem;
+            }
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            .cta-buttons .btn {
+                width: 100%;
+                max-width: 280px;
+                text-align: center;
+            }
+            .cta-section .btn-outline-cta {
+                margin-left: 0;
+            }
+        }
+
+        @media screen and (max-width: 420px) {
+            .cta-section h2 {
+                font-size: 1.4rem;
+            }
+            .cta-section p {
+                font-size: 0.85rem;
+            }
         }
     </style>
 </head>
@@ -58,8 +160,8 @@
 
     <nav class="navbar">
         <a href="index.html" class="logo-btn">
-    <img src="assets/images/stackly-logo.webp" class="logo-img" alt="Stackly Logo">
-</a>
+            <img src="assets/images/stackly-logo.webp" class="logo-img" alt="Stackly Logo">
+        </a>
         <button class="mobile-menu-btn"><i class="fa-solid fa-bars"></i></button>
         <ul class="nav-links">
             <li><a href="index.html">Home</a></li>
@@ -74,23 +176,20 @@
         </ul>
     </nav>
 
-    <!-- Hero Banner - Full Size like Home Page -->
-   <!-- Hero Banner -->
-<section class="hero hero-contact">
-    <img src="assets/images/b1 (3).webp" alt="Contact Us" class="hero-bg" style="filter: brightness(0.4);">
-    <div class="hero-overlay"></div>
-    <div class="particles-container"></div>
-    <div class="hero-content">
-        <h1>Contact Us</h1>
-        <p>Reach out to the Stackly Archaeology team.</p>
-        <div class="hero-buttons">
-            <a href="404.html" class="btn">Email Us</a>
-            <a href="404.html" class="btn btn-outline">Visit Us</a>
+    <section class="hero hero-contact">
+        <img src="assets/images/b1 (3).webp" alt="Contact Us" class="hero-bg" style="filter: brightness(0.4);">
+        <div class="hero-overlay"></div>
+        <div class="particles-container"></div>
+        <div class="hero-content">
+            <h1>Contact Us</h1>
+            <p>Reach out to the Stackly Archaeology team.</p>
+            <div class="hero-buttons">
+                <a href="#contact-general" class="btn">Email Us</a>
+                <a href="#location" class="btn btn-outline">Visit Us</a>
+            </div>
         </div>
-    </div>
-</section>
+    </section>
 
-    <!-- Section 1: Contact Form -->
     <section id="contact-general">
         <div class="container">
             <div class="grid-2">
@@ -104,27 +203,29 @@
                     </ul>
                 </div>
                 <div data-aos="fade-left" style="background:var(--card-bg); padding:2rem; border-radius:12px; border:1px solid var(--glass-border);">
-                    <form class="contact-form" action="404.html" method="GET">
-                        <div class="form-group">
+                    <form class="contact-form" id="contactForm" novalidate>
+                        <div class="form-group" id="nameGroup">
                             <label for="name">Full Name</label>
                             <input type="text" id="name" placeholder="John Doe" required>
+                            <div class="error-message" id="nameError">Please enter your full name.</div>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group" id="emailGroup">
                             <label for="email">Email Address</label>
-                            <input type="email" id="email" placeholder="john@example.com" required>
+                            <input type="email" id="email" placeholder="gow@gmail.com" required>
+                            <div class="error-message" id="emailError">Please enter a valid email address (e.g., name@domain.com).</div>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group" id="messageGroup">
                             <label for="message">Message</label>
                             <textarea id="message" rows="5" placeholder="How can we help you?" required></textarea>
+                            <div class="error-message" id="messageError">Please enter your message (at least 10 characters).</div>
                         </div>
-                        <button type="submit" class="btn" style="width:100%;">Send Message</button>
+                        <button type="submit" class="btn" style="width:100%;" id="submitBtn">Send Message</button>
                     </form>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Section 2: Research Inquiry Form -->
     <section id="research-inquiry" style="background: var(--card-bg);">
         <div class="container text-center">
             <h2 class="section-title" data-aos="fade-up">Academic & Research Inquiries</h2>
@@ -135,7 +236,6 @@
         </div>
     </section>
 
-    <!-- Section 3: Museum Location & Map -->
     <section id="location">
         <div class="container">
             <h2 class="section-title" data-aos="fade-up">Visit The Museum</h2>
@@ -149,8 +249,7 @@
         </div>
     </section>
 
-    <!-- Section 4: FAQ & Social Links -->
-    <section id="faq" style="background: var(--card-bg);">
+    <section id="faq">
         <div class="container">
             <div class="grid-2">
                 <div data-aos="fade-right">
@@ -181,28 +280,42 @@
         </div>
     </section>
 
-    <!-- Footer -->
+    <!-- CTA Section -->
+    <section id="cta" style="background: var(--card-bg);">
+        <div class="container">
+            <div class="cta-section" data-aos="fade-up">
+                <h2>Ready to Explore History?</h2>
+                <p>Join the Stackly community today and be part of groundbreaking archaeological discoveries.</p>
+                <div class="cta-buttons">
+                    <a href="404.html" class="btn">Sign Up Now</a>
+                    <a href="404.html" class="btn btn-outline-cta">Learn More</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <footer>
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-col">
                     <a href="index.html" style="margin-bottom: 1rem; display: inline-block;">
-    <img src="assets/images/stackly-logo.webp" class="footer-logo-img" alt="Stackly Logo">
-</a>
+                        <img src="assets/images/stackly-logo.webp" class="footer-logo-img" alt="Stackly Logo">
+                    </a>
                     <p>Stackly Archaeology is dedicated to the ethical discovery, preservation, and study of ancient human history.</p>
                     <div class="footer-socials" style="display: flex; gap: 1rem; margin-top: 0.5rem;">
-                    <a href="404.html" title="Facebook" style="color: var(--text-color); font-size: 1.2rem; transition: color 0.3s;" onmouseover="this.style.color='var(--primary-color)'" onmouseout="this.style.color='var(--text-color)'"><i class="fa-brands fa-facebook"></i></a>
-                    <a href="404.html" title="Twitter" style="color: var(--text-color); font-size: 1.2rem; transition: color 0.3s;" onmouseover="this.style.color='var(--primary-color)'" onmouseout="this.style.color='var(--text-color)'"><i class="fa-brands fa-twitter"></i></a>
-                    <a href="404.html" title="Instagram" style="color: var(--text-color); font-size: 1.2rem; transition: color 0.3s;" onmouseover="this.style.color='var(--primary-color)'" onmouseout="this.style.color='var(--text-color)'"><i class="fa-brands fa-instagram"></i></a>
-                    <a href="404.html" title="LinkedIn" style="color: var(--text-color); font-size: 1.2rem; transition: color 0.3s;" onmouseover="this.style.color='var(--primary-color)'" onmouseout="this.style.color='var(--text-color)'"><i class="fa-brands fa-linkedin"></i></a>
-                    <a href="404.html" title="YouTube" style="color: var(--text-color); font-size: 1.2rem; transition: color 0.3s;" onmouseover="this.style.color='var(--primary-color)'" onmouseout="this.style.color='var(--text-color)'"><i class="fa-brands fa-youtube"></i></a>
-                </div>
+                        <a href="404.html" title="Facebook" style="color: var(--text-color); font-size: 1.2rem; transition: color 0.3s;" onmouseover="this.style.color='var(--primary-color)'" onmouseout="this.style.color='var(--text-color)'"><i class="fa-brands fa-facebook"></i></a>
+                        <a href="404.html" title="Twitter" style="color: var(--text-color); font-size: 1.2rem; transition: color 0.3s;" onmouseover="this.style.color='var(--primary-color)'" onmouseout="this.style.color='var(--text-color)'"><i class="fa-brands fa-twitter"></i></a>
+                        <a href="404.html" title="Instagram" style="color: var(--text-color); font-size: 1.2rem; transition: color 0.3s;" onmouseover="this.style.color='var(--primary-color)'" onmouseout="this.style.color='var(--text-color)'"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="404.html" title="LinkedIn" style="color: var(--text-color); font-size: 1.2rem; transition: color 0.3s;" onmouseover="this.style.color='var(--primary-color)'" onmouseout="this.style.color='var(--text-color)'"><i class="fa-brands fa-linkedin"></i></a>
+                        <a href="404.html" title="YouTube" style="color: var(--text-color); font-size: 1.2rem; transition: color 0.3s;" onmouseover="this.style.color='var(--primary-color)'" onmouseout="this.style.color='var(--text-color)'"><i class="fa-brands fa-youtube"></i></a>
+                    </div>
                 </div>
                 <div class="footer-col">
                     <h4>Quick Links</h4>
                     <ul>
+                        <li><a href="index.html">Home</a></li>
                         <li><a href="about.html">About Us</a></li>
-                        <li><a href="projects.html"> Projects</a></li>
+                        <li><a href="projects.html">Projects</a></li>
                         <li><a href="discoveries.html">Discoveries</a></li>
                         <li><a href="gallery.html">Gallery</a></li>
                         <li><a href="contact.html">Contact</a></li>
@@ -217,7 +330,6 @@
                         <li><a href="404.html">Partner Universities</a></li>
                     </ul>
                 </div>
-                
                 <div class="footer-col">
                     <h4>Contact</h4>
                     <ul>
@@ -229,7 +341,6 @@
             </div>
             <div class="footer-bottom" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; margin-top: 2rem; padding-top: 1rem; border-top: 1px solid var(--glass-border);">
                 <p style="margin: 0;">&copy; 2026 Stackly Archaeology. All rights reserved.</p>
-                
             </div>
         </div>
     </footer>
@@ -238,5 +349,147 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
     <script src="js/main.js"></script>
+
+    <!-- Contact Form Validation Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const contactForm = document.getElementById('contactForm');
+            const nameInput = document.getElementById('name');
+            const emailInput = document.getElementById('email');
+            const messageInput = document.getElementById('message');
+            const nameError = document.getElementById('nameError');
+            const emailError = document.getElementById('emailError');
+            const messageError = document.getElementById('messageError');
+            const submitBtn = document.getElementById('submitBtn');
+
+            // Email validation function - accepts any valid email format like gow@gmail.com
+            function isValidEmail(email) {
+                const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+                return emailRegex.test(email);
+            }
+
+            // Real-time validation for email
+            emailInput.addEventListener('input', function() {
+                const email = this.value.trim();
+                const group = document.getElementById('emailGroup');
+                if (email.length > 0 && !isValidEmail(email)) {
+                    group.classList.add('error');
+                    group.classList.remove('success');
+                    emailError.classList.add('show');
+                } else if (email.length > 0 && isValidEmail(email)) {
+                    group.classList.remove('error');
+                    group.classList.add('success');
+                    emailError.classList.remove('show');
+                } else {
+                    group.classList.remove('error', 'success');
+                    emailError.classList.remove('show');
+                }
+            });
+
+            // Real-time validation for name
+            nameInput.addEventListener('input', function() {
+                const group = document.getElementById('nameGroup');
+                if (this.value.trim().length < 2 && this.value.trim().length > 0) {
+                    group.classList.add('error');
+                    group.classList.remove('success');
+                    nameError.classList.add('show');
+                } else if (this.value.trim().length >= 2) {
+                    group.classList.remove('error');
+                    group.classList.add('success');
+                    nameError.classList.remove('show');
+                } else {
+                    group.classList.remove('error', 'success');
+                    nameError.classList.remove('show');
+                }
+            });
+
+            // Real-time validation for message
+            messageInput.addEventListener('input', function() {
+                const group = document.getElementById('messageGroup');
+                if (this.value.trim().length < 10 && this.value.trim().length > 0) {
+                    group.classList.add('error');
+                    group.classList.remove('success');
+                    messageError.classList.add('show');
+                } else if (this.value.trim().length >= 10) {
+                    group.classList.remove('error');
+                    group.classList.add('success');
+                    messageError.classList.remove('show');
+                } else {
+                    group.classList.remove('error', 'success');
+                    messageError.classList.remove('show');
+                }
+            });
+
+            // Form submission - redirect to 404 after validation
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const name = nameInput.value.trim();
+                const email = emailInput.value.trim();
+                const message = messageInput.value.trim();
+                let isValid = true;
+
+                // Validate Name
+                const nameGroup = document.getElementById('nameGroup');
+                if (name.length < 2) {
+                    nameGroup.classList.add('error');
+                    nameGroup.classList.remove('success');
+                    nameError.classList.add('show');
+                    isValid = false;
+                } else {
+                    nameGroup.classList.remove('error');
+                    nameGroup.classList.add('success');
+                    nameError.classList.remove('show');
+                }
+
+                // Validate Email
+                const emailGroup = document.getElementById('emailGroup');
+                if (!isValidEmail(email)) {
+                    emailGroup.classList.add('error');
+                    emailGroup.classList.remove('success');
+                    emailError.classList.add('show');
+                    isValid = false;
+                } else {
+                    emailGroup.classList.remove('error');
+                    emailGroup.classList.add('success');
+                    emailError.classList.remove('show');
+                }
+
+                // Validate Message
+                const messageGroup = document.getElementById('messageGroup');
+                if (message.length < 10) {
+                    messageGroup.classList.add('error');
+                    messageGroup.classList.remove('success');
+                    messageError.classList.add('show');
+                    isValid = false;
+                } else {
+                    messageGroup.classList.remove('error');
+                    messageGroup.classList.add('success');
+                    messageError.classList.remove('show');
+                }
+
+                if (isValid) {
+                    // Change button text to show processing
+                    submitBtn.disabled = true;
+                    submitBtn.textContent = 'Sending...';
+                    submitBtn.style.opacity = '0.7';
+
+                    // Simulate sending delay then redirect to 404
+                    setTimeout(() => {
+                        // Redirect to 404 page
+                        window.location.href = '404.html';
+                    }, 1500);
+                } else {
+                    // Scroll to first error
+                    const firstError = document.querySelector('.form-group.error');
+                    if (firstError) {
+                        firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        const input = firstError.querySelector('input, textarea');
+                        if (input) input.focus();
+                    }
+                }
+            });
+        });
+    </script>
 </body>
 </html>
