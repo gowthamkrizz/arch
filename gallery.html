@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery | Stackly Archaeology</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .btn-login-nav {
+            background: var(--primary-color);
+            color: #fff;
+            padding: 0.4rem 1.2rem;
+            border-radius: 4px;
+            font-weight: 600;
+            transition: var(--transition);
+            text-decoration: none;
+            font-size: 0.95rem;
+            display: inline-block;
+            text-align: center;
+            line-height: 1.5;
+        }
+        .btn-login-nav:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(201, 151, 76, 0.3);
+        }
+        .btn-nav {
+            padding: 0.4rem 1.2rem;
+            font-size: 0.95rem;
+            display: inline-block;
+            text-align: center;
+            line-height: 1.5;
+        }
+        /* Gallery page hero - full size like home page */
+        .hero-gallery {
+            min-height: 100vh !important;
+            height: 100vh !important;
+            padding-bottom: 6rem !important;
+        }
+        .hero-gallery .hero-content h1 {
+            font-size: 4rem !important;
+        }
+        .hero-gallery .hero-content p {
+            font-size: 1.2rem !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="spotlight"></div>
+    <div class="scroll-progress" id="scroll-progress"></div>
+
+    <nav class="navbar">
+        <a href="index.html" class="logo-btn">
+    <img src="assets/images/stackly-logo.webp" class="logo-img" alt="Stackly Logo">
+</a>
+        <button class="mobile-menu-btn"><i class="fa-solid fa-bars"></i></button>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="projects.html">Projects</a></li>
+            <li><a href="discoveries.html">Discoveries</a></li>
+            <li><a href="gallery.html" style="color:var(--primary-color)">Gallery</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="login.html" class="btn-login-nav">Login</a></li>
+            <li><a href="signup.html" class="btn btn-nav">Sign Up</a></li>
+            <li><button id="theme-toggle" class="theme-toggle"><i class="fa-solid fa-sun"></i></button></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Banner - Full Size like Home Page -->
+    <!-- Hero Banner -->
+<section class="hero hero-gallery">
+    <img src="assets/images/b1 (4).webp" alt="Gallery" class="hero-bg" style="filter: brightness(0.6);">
+    <div class="hero-overlay"></div>
+    <div class="particles-container"></div>
+    <div class="hero-content">
+        <h1>Visual Archive</h1>
+        <p>Immerse yourself in high-resolution imagery of our excavations and findings.</p>
+        <div class="hero-buttons">
+            <a href="404.html" class="btn">Explore Gallery</a>
+            <a href="contact.html" class="btn btn-outline">Visit Museum</a>
+        </div>
+    </div>
+</section>
+
+    <!-- Section 1: Excavation Photography -->
+    <section id="excavation-photo">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Excavation Photography</h2>
+            <div class="gallery-grid" data-aos="fade-up">
+                <div class="gallery-item">
+                    <img src="assets/images/Site Overview (Sector 4).webp" alt="Site overview">
+                    <div class="gallery-item-overlay">Site Overview (Sector 4)</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="assets/images/Trench Digging.webp" style="filter: grayscale(50%);" alt="Trench digging">
+                    <div class="gallery-item-overlay">Trench Digging</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="assets/images/Drone Mapping.webp" style="filter: hue-rotate(30deg);" alt="Drone mapping">
+                    <div class="gallery-item-overlay">Drone Mapping</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="assets/images/Night Excavation.webp" style="filter: contrast(1.2);" alt="Night excavation">
+                    <div class="gallery-item-overlay">Night Excavation</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 2: Artifact Gallery -->
+    <section id="artifact-gallery" style="background: var(--card-bg);">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Artifact Gallery</h2>
+            <div class="gallery-grid" data-aos="fade-up">
+                <div class="gallery-item">
+                    <img src="assets/images/Golden Relic.webp" alt="Artifact">
+                    <div class="gallery-item-overlay">Golden Relic</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="assets/images/Emerald Chalice.webp" style="filter: hue-rotate(90deg);" alt="Artifact">
+                    <div class="gallery-item-overlay">Emerald Chalice</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="assets/images/blade .webp" style="filter: grayscale(100%);" alt="Artifact">
+                    <div class="gallery-item-overlay">Obsidian Blade</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="assets/images/Ceramic Vase2 .webp" style="filter: hue-rotate(180deg);" alt="Artifact">
+                    <div class="gallery-item-overlay">Ceramic Vase</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 3: Historical Sites -->
+    <section id="historical-sites">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Historical Sites</h2>
+            <div class="grid-2">
+                <div data-aos="fade-right">
+                    <img src="assets/images/The Great Temple Complex.webp" style="width:100%; border-radius:12px;" alt="Temple Complex">
+                </div>
+                <div data-aos="fade-left">
+                    <h3 style="color:var(--primary-color); font-size:2rem; margin-bottom:1rem;">The Great Temple Complex</h3>
+                    <p>A sweeping aerial view of the recently excavated Great Temple Complex. The intricate geometric alignment of these ruins aligns perfectly with the summer solstice.</p>
+                    <a href="404.html" class="btn btn-outline" style="margin-top:1.5rem;">Learn More About This Site</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 4: Restoration Process -->
+    <section id="restoration" style="background: var(--card-bg);">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Restoration Process</h2>
+            <div class="grid-3">
+                <div class="hover-card" data-aos="zoom-in">
+                    <i class="fa-solid fa-magnifying-glass fa-3x" style="color:var(--primary-color); margin-bottom:1rem;"></i>
+                    <h3>1. Assessment</h3>
+                    <p>Every piece is microscopically examined to determine material composition and structural integrity before any cleaning begins.</p>
+                </div>
+                <div class="hover-card" data-aos="zoom-in" data-aos-delay="100">
+                    <i class="fa-solid fa-brush fa-3x" style="color:var(--primary-color); margin-bottom:1rem;"></i>
+                    <h3>2. Micro-cleaning</h3>
+                    <p>Centuries of dirt and calcification are painstakingly removed using laser ablation and soft-bristle micro-brushes.</p>
+                </div>
+                <div class="hover-card" data-aos="zoom-in" data-aos-delay="200">
+                    <i class="fa-solid fa-cube fa-3x" style="color:var(--primary-color); margin-bottom:1rem;"></i>
+                    <h3>3. Digital Reconstruction</h3>
+                    <p>Fragments are 3D scanned and reassembled digitally before physical adhesive is applied, ensuring perfect alignment.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 5: Virtual Museum Tour -->
+    <section id="virtual-tour">
+        <div class="container text-center">
+            <h2 class="section-title" data-aos="fade-up">Virtual Museum Tour</h2>
+            <p style="margin-bottom: 2rem;" data-aos="fade-up">Experience our museum from anywhere in the world. Our 3D interactive environment allows you to walk the halls and inspect artifacts up close.</p>
+            <div style="position:relative; width:100%; max-width:500px; margin: 0 auto; border-radius:12px; overflow:hidden; border:1px solid var(--glass-border);" data-aos="zoom-in">
+                <img src="assets/images/b1 (4).webp" style="width:100%; display:block; height:300px; object-fit:cover;" alt="Virtual Tour">
+                <div style="position:absolute; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.4); display:flex; align-items:center; justify-content:center;">
+                    <a href="404.html" class="btn" style="padding: 1rem 3rem; font-size:1.2rem;"><i class="fa-solid fa-play"></i> Start Tour</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <a href="index.html" style="margin-bottom: 1rem; display: inline-block;">
+    <img src="assets/images/stackly-logo.webp" class="footer-logo-img" alt="Stackly Logo">
+</a>
+                    <p>Stackly Archaeology is dedicated to the ethical discovery, preservation, and study of ancient human history.</p>
+                    <div class="footer-socials" style="display: flex; gap: 1rem; margin-top: 0.5rem;">
+                    <a href="404.html" title="Facebook" style="color: var(--text-color); font-size: 1.2rem; transition: color 0.3s;" onmouseover="this.style.color='var(--primary-color)'" onmouseout="this.style.color='var(--text-color)'"><i class="fa-brands fa-facebook"></i></a>
+                    <a href="404.html" title="Twitter" style="color: var(--text-color); font-size: 1.2rem; transition: color 0.3s;" onmouseover="this.style.color='var(--primary-color)'" onmouseout="this.style.color='var(--text-color)'"><i class="fa-brands fa-twitter"></i></a>
+                    <a href="404.html" title="Instagram" style="color: var(--text-color); font-size: 1.2rem; transition: color 0.3s;" onmouseover="this.style.color='var(--primary-color)'" onmouseout="this.style.color='var(--text-color)'"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="404.html" title="LinkedIn" style="color: var(--text-color); font-size: 1.2rem; transition: color 0.3s;" onmouseover="this.style.color='var(--primary-color)'" onmouseout="this.style.color='var(--text-color)'"><i class="fa-brands fa-linkedin"></i></a>
+                    <a href="404.html" title="YouTube" style="color: var(--text-color); font-size: 1.2rem; transition: color 0.3s;" onmouseover="this.style.color='var(--primary-color)'" onmouseout="this.style.color='var(--text-color)'"><i class="fa-brands fa-youtube"></i></a>
+                </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="projects.html"> Projects</a></li>
+                        <li><a href="discoveries.html">Discoveries</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Research</h4>
+                    <ul>
+                        <li><a href="404.html">Publications</a></li>
+                        <li><a href="404.html">Methodology</a></li>
+                        <li><a href="404.html">Grants</a></li>
+                        <li><a href="404.html">Partner Universities</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li><i class="fa-solid fa-envelope"></i> hello@stackly.com</li>
+                        <li><i class="fa-solid fa-phone"></i> +91 98765 43210</li>
+                        <li><i class="fa-solid fa-location-dot"></i> MMR Complex, Near Chinna Thirupathi, Salem, Tamil Nadu 636008</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; margin-top: 2rem; padding-top: 1rem; border-top: 1px solid var(--glass-border);">
+                <p style="margin: 0;">&copy; 2026 Stackly Archaeology. All rights reserved.</p>
+                
+            </div>
+        </div>
+    </footer>
+
+    <button id="backToTop" aria-label="Back to Top"><i class="fa-solid fa-arrow-up"></i></button>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

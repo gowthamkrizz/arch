@@ -1,0 +1,926 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard | Stackly Archaeology</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        body {
+            background-color: var(--bg-color);
+            margin: 0;
+            display: flex;
+            min-height: 100vh;
+            font-family: var(--font-main);
+        }
+
+        .sidebar {
+            width: 260px;
+            background: var(--card-bg);
+            border-right: 1px solid var(--glass-border);
+            display: flex;
+            flex-direction: column;
+            padding: 1.5rem;
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100vh;
+            overflow-y: auto;
+            z-index: 1000;
+            transition: transform 0.3s ease;
+        }
+        .sidebar .logo {
+            font-size: 1.5rem;
+            margin-bottom: 2.5rem;
+            text-decoration: none;
+            color: var(--primary-color);
+            font-family: var(--font-heading);
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: var(--transition);
+        }
+        .sidebar .logo:hover {
+            transform: scale(1.05);
+        }
+        .nav-menu {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.3rem;
+            padding: 0;
+            flex: 1;
+        }
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--text-color);
+            padding: 0.7rem 1rem;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: var(--transition);
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+        .nav-menu a:hover {
+            background: rgba(201, 151, 76, 0.1);
+            color: var(--primary-color);
+            transform: translateX(5px);
+        }
+        .nav-menu a.active {
+            background: rgba(201, 151, 76, 0.15);
+            color: var(--primary-color);
+            border-right: 3px solid var(--primary-color);
+        }
+        .nav-menu a i {
+            width: 20px;
+            text-align: center;
+            font-size: 1rem;
+        }
+        .nav-menu .logout {
+            color: #e74c3c;
+            margin-top: auto;
+            border-top: 1px solid var(--glass-border);
+            padding-top: 1rem;
+        }
+        .nav-menu .logout:hover {
+            background: rgba(231, 76, 60, 0.1);
+            color: #e74c3c;
+        }
+
+        .mobile-menu-toggle {
+            display: none;
+            position: fixed;
+            top: 15px;
+            right: 20px;
+            z-index: 1001;
+            background: var(--card-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 8px;
+            padding: 10px 14px;
+            cursor: pointer;
+            color: var(--text-color);
+            font-size: 1.5rem;
+            transition: var(--transition);
+        }
+        .mobile-menu-toggle:hover {
+            background: var(--primary-color);
+            color: #fff;
+        }
+
+        .sidebar-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+
+        .main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            margin-left: 260px;
+            min-height: 100vh;
+        }
+
+        .topbar {
+            height: 65px;
+            background: var(--card-bg);
+            border-bottom: 1px solid var(--glass-border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 50;
+        }
+        .topbar h2 {
+            font-size: 1.2rem;
+            font-family: var(--font-heading);
+            margin: 0;
+        }
+        .topbar-right {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .topbar-email {
+            font-size: 0.85rem;
+            font-weight: 500;
+            opacity: 0.85;
+        }
+        .topbar-role {
+            background: #2a5a58;
+            color: #fff;
+            padding: 0.15rem 0.7rem;
+            border-radius: 20px;
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+        .topbar .theme-toggle {
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--text-color);
+            font-size: 1.2rem;
+            transition: var(--transition);
+        }
+        .topbar .theme-toggle:hover {
+            color: var(--primary-color);
+        }
+
+        .dashboard-content {
+            padding: 2rem;
+            overflow-y: auto;
+            animation: fadeIn 0.5s ease;
+            flex: 1;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeUp 0.4s ease;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .widget {
+            background: var(--card-bg);
+            border: 1px solid var(--glass-border);
+            padding: 1.5rem;
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+        .widget::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-color), #e2b364, var(--primary-color));
+            background-size: 200% 100%;
+            animation: shimmer 3s ease-in-out infinite;
+        }
+        @keyframes shimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+        .widget:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+        }
+        .widget-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--text-color);
+            opacity: 0.8;
+            font-size: 0.85rem;
+            margin-bottom: 0.3rem;
+        }
+        .widget-header i {
+            font-size: 1.3rem;
+            opacity: 0.6;
+            transition: var(--transition);
+        }
+        .widget:hover .widget-header i {
+            opacity: 1;
+            transform: rotate(10deg) scale(1.1);
+        }
+
+        .btn-dashboard {
+            background: linear-gradient(135deg, var(--primary-color), #b8860b);
+            color: #fff;
+            border: none;
+            padding: 0.5rem 1.2rem;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            font-size: 0.85rem;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+        .btn-dashboard:hover {
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 8px 25px rgba(201, 151, 76, 0.3);
+        }
+        .btn-dashboard-outline {
+            background: transparent;
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+            padding: 0.4rem 1rem;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            font-size: 0.8rem;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+        .btn-dashboard-outline:hover {
+            background: var(--primary-color);
+            color: #fff;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(201, 151, 76, 0.3);
+        }
+
+        .map-placeholder {
+            height: 220px;
+            background: url('assets/images/hero_bg.png') center/cover;
+            border-radius: 8px;
+            filter: grayscale(50%) brightness(0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+        .map-placeholder:hover {
+            filter: grayscale(30%) brightness(0.8);
+        }
+
+        .team-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+        }
+        .team-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.7rem;
+            background: rgba(255,255,255,0.03);
+            border-radius: 8px;
+            transition: var(--transition);
+            font-size: 0.9rem;
+        }
+        .team-item:hover {
+            background: rgba(255,255,255,0.06);
+        }
+        .status-dot {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            margin-right: 0.3rem;
+        }
+        .status-dot.active { background: #4caf50; }
+        .status-dot.standby { background: #ff9800; }
+        .status-dot.offline { background: #f44336; }
+
+        .welcome-banner {
+            background: linear-gradient(135deg, rgba(201, 151, 76, 0.1), rgba(201, 151, 76, 0.05));
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            padding: 1.5rem 2rem;
+            margin-bottom: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+        .welcome-banner::after {
+            content: '⚡';
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 3.5rem;
+            opacity: 0.05;
+        }
+        .welcome-banner h3 {
+            margin: 0;
+            font-size: 1.3rem;
+        }
+        .welcome-banner p {
+            opacity: 0.8;
+            margin: 0.3rem 0 0 0;
+            font-size: 0.95rem;
+        }
+
+        .status-badge {
+            padding: 0.15rem 0.7rem;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+        .status-badge.active {
+            background: rgba(76, 175, 80, 0.15);
+            color: #4caf50;
+        }
+        .status-badge.standby {
+            background: rgba(255, 152, 0, 0.15);
+            color: #ff9800;
+        }
+        .status-badge.offline {
+            background: rgba(244, 67, 54, 0.15);
+            color: #f44336;
+        }
+
+        .quick-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        .quick-stat {
+            background: var(--card-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 8px;
+            padding: 0.8rem;
+            text-align: center;
+            transition: var(--transition);
+        }
+        .quick-stat:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        .quick-stat .stat-number {
+            font-weight: 700;
+            font-size: 1.3rem;
+            color: var(--primary-color);
+        }
+        .quick-stat .stat-label {
+            font-size: 0.7rem;
+            opacity: 0.7;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 0.5rem;
+            min-width: 450px;
+        }
+        th, td {
+            padding: 0.6rem 0.8rem;
+            text-align: left;
+            border-bottom: 1px solid var(--glass-border);
+            font-size: 0.9rem;
+        }
+        th {
+            color: var(--primary-color);
+            font-weight: 600;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        tr {
+            transition: var(--transition);
+        }
+        tr:hover {
+            background: rgba(201, 151, 76, 0.05);
+        }
+
+        .table-container {
+            background: var(--card-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            overflow-x: auto;
+            transition: var(--transition);
+        }
+        .table-container:hover {
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        @media screen and (max-width: 900px) {
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            .sidebar {
+                transform: translateX(-100%);
+                width: 280px;
+                padding: 1rem;
+            }
+            .sidebar.open {
+                transform: translateX(0);
+            }
+            .sidebar-overlay.active {
+                display: block;
+            }
+            .mobile-menu-toggle {
+                display: block;
+            }
+            .main-content {
+                margin-left: 0;
+            }
+            .topbar {
+                padding: 0 1rem;
+                height: 55px;
+            }
+            .topbar h2 {
+                font-size: 0.95rem;
+            }
+            .topbar-email {
+                display: none;
+            }
+            .dashboard-content {
+                padding: 1rem;
+            }
+            .quick-stats {
+                grid-template-columns: 1fr 1fr;
+            }
+            .welcome-banner {
+                padding: 1rem;
+            }
+            .welcome-banner h3 {
+                font-size: 1.1rem;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .quick-stats {
+                grid-template-columns: 1fr;
+            }
+            .topbar h2 {
+                font-size: 0.85rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <button class="mobile-menu-toggle" id="mobileMenuToggle">
+        <i class="fa-solid fa-bars"></i>
+    </button>
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <aside class="sidebar" id="sidebar">
+        <a href="index.html" class="logo-btn" style="margin-bottom: 2.5rem;">
+    <img src="assets/images/stackly-logo.webp" style="height:35px; width:auto; display:block;" alt="Stackly Logo">
+</a>
+        <ul class="nav-menu">
+            <li><a href="dashboard3.html" class="active"><i class="fa-solid fa-user-tie"></i> Dashboard</a></li>
+            <li><a href="#" class="tab-link" data-target="teams-tab"><i class="fa-solid fa-people-group"></i> Teams</a></li>
+            <li><a href="#" class="tab-link" data-target="finance-tab"><i class="fa-solid fa-coins"></i> Finance</a></li>
+            <li><a href="#" class="tab-link" data-target="users-tab"><i class="fa-solid fa-users"></i> Users</a></li>
+            <li><a href="#" class="tab-link" data-target="settings-tab"><i class="fa-solid fa-gear"></i> Settings</a></li>
+            <li><a href="#" class="tab-link" data-target="reports-tab"><i class="fa-solid fa-file-lines"></i> Reports</a></li>
+            <li><a href="index.html" class="logout"><i class="fa-solid fa-right-from-bracket"></i> Logout</a></li>
+        </ul>
+    </aside>
+
+    <main class="main-content">
+        <header class="topbar">
+            <h2>Admin Dashboard</h2>
+            <div class="topbar-right">
+                <span class="topbar-email" id="topbarEmail"></span>
+                <span class="topbar-role" id="topbarRole">Admin</span>
+                <button id="theme-toggle" class="theme-toggle"><i class="fa-solid fa-sun"></i></button>
+            </div>
+        </header>
+
+        <section class="dashboard-content">
+            <!-- Dashboard Tab -->
+            <div id="dashboard-tab" class="tab-content active">
+                <div class="welcome-banner">
+                    <h3>⚡ Welcome, <span id="welcomeName">Administrator</span>!</h3>
+                    <p>System overview and key metrics at a glance.</p>
+                </div>
+
+                <div class="quick-stats">
+                    <div class="quick-stat">
+                        <div class="stat-number">42</div>
+                        <div class="stat-label">Total Users</div>
+                    </div>
+                    <div class="quick-stat">
+                        <div class="stat-number">12</div>
+                        <div class="stat-label">Active Projects</div>
+                    </div>
+                    <div class="quick-stat">
+                        <div class="stat-number">$2.4M</div>
+                        <div class="stat-label">Total Funding</div>
+                    </div>
+                    <div class="quick-stat">
+                        <div class="stat-number">156</div>
+                        <div class="stat-label">Artifacts/Month</div>
+                    </div>
+                    <div class="quick-stat">
+                        <div class="stat-number">8</div>
+                        <div class="stat-label">Countries</div>
+                    </div>
+                    <div class="quick-stat">
+                        <div class="stat-number">24</div>
+                        <div class="stat-label">Team Members</div>
+                    </div>
+                </div>
+
+                <div class="dashboard-grid">
+                    <div class="widget">
+                        <div class="widget-header">
+                            <span>🌍 Live Global Excavations Map</span>
+                            <i class="fa-solid fa-earth-americas"></i>
+                        </div>
+                        <div class="map-placeholder">
+                            <h3 style="background:rgba(0,0,0,0.7); padding:0.8rem 1.2rem; border-radius:8px; color:var(--primary-color); font-size:1rem;"><i class="fa-solid fa-location-crosshairs"></i> Tracking 3 Active Sites</h3>
+                        </div>
+                        <a href="404.html" class="btn-dashboard" style="margin-top:0.8rem; text-align:center; font-size:0.8rem;">View All Sites</a>
+                    </div>
+                    
+                    <div class="widget">
+                        <div class="widget-header">
+                            <span>👥 Field Team Status</span>
+                            <i class="fa-solid fa-users"></i>
+                        </div>
+                        <ul class="team-list">
+                            <li class="team-item">
+                                <div>
+                                    <strong style="font-size:0.9rem;">Team Alpha</strong><br>
+                                    <small style="opacity:0.7; font-size:0.75rem;">Peru Site</small>
+                                </div>
+                                <span style="color:#4caf50; font-size:0.8rem;"><span class="status-dot active"></span> Active</span>
+                            </li>
+                            <li class="team-item">
+                                <div>
+                                    <strong style="font-size:0.9rem;">Team Beta</strong><br>
+                                    <small style="opacity:0.7; font-size:0.75rem;">Egypt Site</small>
+                                </div>
+                                <span style="color:#ff9800; font-size:0.8rem;"><span class="status-dot standby"></span> Standby</span>
+                            </li>
+                            <li class="team-item">
+                                <div>
+                                    <strong style="font-size:0.9rem;">Team Gamma</strong><br>
+                                    <small style="opacity:0.7; font-size:0.75rem;">Greece Site</small>
+                                </div>
+                                <span style="color:#f44336; font-size:0.8rem;"><span class="status-dot offline"></span> Offline</span>
+                            </li>
+                        </ul>
+                        <a href="404.html" class="btn-dashboard" style="margin-top:0.8rem; text-align:center; font-size:0.8rem;">Manage Teams</a>
+                    </div>
+                </div>
+
+                <!-- Weather Alert -->
+                <div class="widget" style="margin-bottom:1.5rem;">
+                    <div class="widget-header">
+                        <span>🌤️ Weather Alerts for Dig Sites</span>
+                        <i class="fa-solid fa-cloud-bolt"></i>
+                    </div>
+                    <div style="display:flex; gap:1.5rem; padding:0.8rem; background:rgba(255,255,255,0.03); border-radius:8px; flex-wrap:wrap;">
+                        <div style="display:flex; align-items:center; gap:0.8rem;">
+                            <div><i class="fa-solid fa-sun" style="color:#ffeb3b; font-size:1.5rem;"></i></div>
+                            <div>
+                                <h4 style="margin:0; font-size:0.9rem;">Site Alpha: Clear Skies</h4>
+                                <p style="margin:0.1rem 0 0 0; opacity:0.8; font-size:0.8rem;">Optimal for 48 hours</p>
+                            </div>
+                        </div>
+                        <div style="display:flex; align-items:center; gap:0.8rem;">
+                            <div><i class="fa-solid fa-cloud-rain" style="color:#64b5f6; font-size:1.5rem;"></i></div>
+                            <div>
+                                <h4 style="margin:0; font-size:0.9rem;">Site Beta: Light Rain</h4>
+                                <p style="margin:0.1rem 0 0 0; opacity:0.8; font-size:0.8rem;">Clears by tomorrow</p>
+                            </div>
+                        </div>
+                        <div style="display:flex; align-items:center; gap:0.8rem;">
+                            <div><i class="fa-solid fa-cloud" style="color:#90a4ae; font-size:1.5rem;"></i></div>
+                            <div>
+                                <h4 style="margin:0; font-size:0.9rem;">Site Gamma: Partly Cloudy</h4>
+                                <p style="margin:0.1rem 0 0 0; opacity:0.8; font-size:0.8rem;">Good conditions</p>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="404.html" class="btn-dashboard" style="margin-top:0.8rem; text-align:center; font-size:0.8rem;">View Full Weather Report</a>
+                </div>
+
+                <!-- Activity Log -->
+                <div class="table-container">
+                    <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; margin-bottom:0.5rem;">
+                        <h3 style="margin:0; font-size:1.1rem;">📋 Recent Activity Log</h3>
+                        <a href="404.html" class="btn-dashboard-outline" style="font-size:0.75rem;">View All</a>
+                    </div>
+                    <ul style="list-style:none; padding:0; margin:0;">
+                        <li style="padding:0.5rem 0; border-bottom:1px solid var(--glass-border); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; font-size:0.9rem;">
+                            <span>👤 User "Sarah Lin" uploaded new dataset</span>
+                            <span style="font-size:0.7rem; opacity:0.5;">2h ago</span>
+                        </li>
+                        <li style="padding:0.5rem 0; border-bottom:1px solid var(--glass-border); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; font-size:0.9rem;">
+                            <span>🏺 New artifact logged: ART-995</span>
+                            <span style="font-size:0.7rem; opacity:0.5;">4h ago</span>
+                        </li>
+                        <li style="padding:0.5rem 0; border-bottom:1px solid var(--glass-border); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; font-size:0.9rem;">
+                            <span>📦 Team Alpha requested supplies</span>
+                            <span style="font-size:0.7rem; opacity:0.5;">6h ago</span>
+                        </li>
+                        <li style="padding:0.5rem 0; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; font-size:0.9rem;">
+                            <span>💾 System backup completed</span>
+                            <span style="font-size:0.7rem; opacity:0.5;">12h ago</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Teams Tab -->
+            <div id="teams-tab" class="tab-content">
+                <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; margin-bottom:1.5rem;">
+                    <h2 style="margin:0; font-size:1.4rem;">👥 Team Management</h2>
+                    <a href="404.html" class="btn-dashboard" style="font-size:0.8rem;">+ Create New Team</a>
+                </div>
+                <div class="dashboard-grid">
+                    <div class="widget">
+                        <h3 style="font-size:1.1rem;">Team Alpha - Peru</h3>
+                        <p style="font-size:0.9rem;"><strong>Members:</strong> 8</p>
+                        <p style="font-size:0.9rem;"><strong>Status:</strong> <span class="status-badge active">Active</span></p>
+                        <p style="font-size:0.9rem;"><strong>Site:</strong> Machu Picchu Region</p>
+                        <a href="404.html" class="btn-dashboard-outline" style="margin-top:0.5rem; width:100%; text-align:center; font-size:0.8rem;">View Team</a>
+                    </div>
+                    <div class="widget">
+                        <h3 style="font-size:1.1rem;">Team Beta - Egypt</h3>
+                        <p style="font-size:0.9rem;"><strong>Members:</strong> 6</p>
+                        <p style="font-size:0.9rem;"><strong>Status:</strong> <span class="status-badge standby">Standby</span></p>
+                        <p style="font-size:0.9rem;"><strong>Site:</strong> Valley of Kings</p>
+                        <a href="404.html" class="btn-dashboard-outline" style="margin-top:0.5rem; width:100%; text-align:center; font-size:0.8rem;">View Team</a>
+                    </div>
+                    <div class="widget">
+                        <h3 style="font-size:1.1rem;">Team Gamma - Greece</h3>
+                        <p style="font-size:0.9rem;"><strong>Members:</strong> 5</p>
+                        <p style="font-size:0.9rem;"><strong>Status:</strong> <span class="status-badge offline">Offline</span></p>
+                        <p style="font-size:0.9rem;"><strong>Site:</strong> Crete Island</p>
+                        <a href="404.html" class="btn-dashboard-outline" style="margin-top:0.5rem; width:100%; text-align:center; font-size:0.8rem;">View Team</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Finance Tab -->
+            <div id="finance-tab" class="tab-content">
+                <h2 style="margin-bottom:1.5rem; font-size:1.4rem;">💰 Finance Overview</h2>
+                <div class="dashboard-grid">
+                    <div class="widget">
+                        <h3 style="font-size:1.1rem;">Total Budget</h3>
+                        <div style="font-size:2rem; font-weight:700; background:linear-gradient(135deg, var(--primary-color), #e2b364); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;">$2,400,000</div>
+                        <p style="opacity:0.7; font-size:0.85rem;">Annual budget for 2026</p>
+                    </div>
+                    <div class="widget">
+                        <h3 style="font-size:1.1rem;">Spent</h3>
+                        <div style="font-size:2rem; font-weight:700; color:#4caf50;">$1,850,000</div>
+                        <p style="opacity:0.7; font-size:0.85rem;">77% of total budget</p>
+                        <div style="width:100%; height:6px; background:var(--glass-border); border-radius:4px; overflow:hidden;">
+                            <div style="width:77%; height:100%; background:var(--primary-color); border-radius:4px;"></div>
+                        </div>
+                    </div>
+                    <div class="widget">
+                        <h3 style="font-size:1.1rem;">Remaining</h3>
+                        <div style="font-size:2rem; font-weight:700; color:#ff9800;">$550,000</div>
+                        <p style="opacity:0.7; font-size:0.85rem;">Available for Q4</p>
+                        <div style="width:100%; height:6px; background:var(--glass-border); border-radius:4px; overflow:hidden;">
+                            <div style="width:23%; height:100%; background:#ff9800; border-radius:4px;"></div>
+                        </div>
+                    </div>
+                </div>
+                <a href="404.html" class="btn-dashboard" style="text-align:center; font-size:0.85rem;">View Full Financial Report</a>
+            </div>
+
+            <!-- Users Tab -->
+            <div id="users-tab" class="tab-content">
+                <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; margin-bottom:1.5rem;">
+                    <h2 style="margin:0; font-size:1.4rem;">👤 User Management</h2>
+                    <a href="404.html" class="btn-dashboard" style="font-size:0.8rem;">+ Add New User</a>
+                </div>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Role</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Alex Vance</strong></td>
+                                <td>alex@stackly.com</td>
+                                <td><span class="topbar-role" style="background:#2a5a58; font-size:0.65rem;">Admin</span></td>
+                                <td><span class="status-badge active" style="font-size:0.65rem;">Active</span></td>
+                                <td><a href="404.html" class="btn-dashboard-outline" style="padding:0.15rem 0.6rem; font-size:0.65rem; text-decoration:none;">Edit</a></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Sarah Lin</strong></td>
+                                <td>sarah@stackly.com</td>
+                                <td><span class="topbar-role" style="background:var(--primary-color); font-size:0.65rem;">Researcher</span></td>
+                                <td><span class="status-badge active" style="font-size:0.65rem;">Active</span></td>
+                                <td><a href="404.html" class="btn-dashboard-outline" style="padding:0.15rem 0.6rem; font-size:0.65rem; text-decoration:none;">Edit</a></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Marcus Thorne</strong></td>
+                                <td>marcus@stackly.com</td>
+                                <td><span class="topbar-role" style="background:var(--primary-color); font-size:0.65rem;">Researcher</span></td>
+                                <td><span class="status-badge standby" style="font-size:0.65rem;">Pending</span></td>
+                                <td><a href="404.html" class="btn-dashboard-outline" style="padding:0.15rem 0.6rem; font-size:0.65rem; text-decoration:none;">Edit</a></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Elena Rodriguez</strong></td>
+                                <td>elena@stackly.com</td>
+                                <td><span class="topbar-role" style="background:var(--primary-color); font-size:0.65rem;">Researcher</span></td>
+                                <td><span class="status-badge active" style="font-size:0.65rem;">Active</span></td>
+                                <td><a href="404.html" class="btn-dashboard-outline" style="padding:0.15rem 0.6rem; font-size:0.65rem; text-decoration:none;">Edit</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Settings Tab -->
+            <div id="settings-tab" class="tab-content">
+                <h2 style="margin-bottom:1.5rem; font-size:1.4rem;">⚙️ System Settings</h2>
+                <div class="widget">
+                    <h3 style="font-size:1.1rem;">Global Preferences</h3>
+                    <p style="opacity:0.7; font-size:0.85rem;">Toggle system-wide settings</p>
+                    <div style="display:flex; flex-direction:column; gap:0.6rem; margin:0.8rem 0;">
+                        <label style="display:flex; align-items:center; gap:10px; cursor:pointer; font-size:0.9rem;">
+                            <input type="checkbox" checked style="width:16px; height:16px; accent-color:var(--primary-color);"> Enable Public Registration
+                        </label>
+                        <label style="display:flex; align-items:center; gap:10px; cursor:pointer; font-size:0.9rem;">
+                            <input type="checkbox" style="width:16px; height:16px; accent-color:var(--primary-color);"> Maintenance Mode
+                        </label>
+                        <label style="display:flex; align-items:center; gap:10px; cursor:pointer; font-size:0.9rem;">
+                            <input type="checkbox" checked style="width:16px; height:16px; accent-color:var(--primary-color);"> Allow Guest Access
+                        </label>
+                        <label style="display:flex; align-items:center; gap:10px; cursor:pointer; font-size:0.9rem;">
+                            <input type="checkbox" checked style="width:16px; height:16px; accent-color:var(--primary-color);"> Email Notifications
+                        </label>
+                        <label style="display:flex; align-items:center; gap:10px; cursor:pointer; font-size:0.9rem;">
+                            <input type="checkbox" style="width:16px; height:16px; accent-color:var(--primary-color);"> Two-Factor Authentication
+                        </label>
+                    </div>
+                    <a href="404.html" class="btn-dashboard" style="margin-top:0.3rem; text-align:center; font-size:0.85rem;">Save Changes</a>
+                </div>
+            </div>
+
+            <!-- Reports Tab -->
+            <div id="reports-tab" class="tab-content">
+                <h2 style="margin-bottom:1.5rem; font-size:1.4rem;">📊 System Reports</h2>
+                <div class="dashboard-grid">
+                    <div class="widget">
+                        <h3 style="font-size:1.1rem;">📄 System Audit Log</h3>
+                        <p style="opacity:0.7; font-size:0.85rem;">Generated: Oct 12, 2026</p>
+                        <p style="font-size:0.85rem;">Complete system audit log with all user activities.</p>
+                        <a href="404.html" class="btn-dashboard-outline" style="margin-top:0.5rem; width:100%; text-align:center; font-size:0.8rem;"><i class="fa-solid fa-download"></i> Download Report</a>
+                    </div>
+                    <div class="widget">
+                        <h3 style="font-size:1.1rem;">📊 User Activity Report</h3>
+                        <p style="opacity:0.7; font-size:0.85rem;">Generated: Oct 10, 2026</p>
+                        <p style="font-size:0.85rem;">Detailed analysis of user engagement and activity.</p>
+                        <a href="404.html" class="btn-dashboard-outline" style="margin-top:0.5rem; width:100%; text-align:center; font-size:0.8rem;"><i class="fa-solid fa-download"></i> Download Report</a>
+                    </div>
+                    <div class="widget">
+                        <h3 style="font-size:1.1rem;">📈 Project Performance</h3>
+                        <p style="opacity:0.7; font-size:0.85rem;">Generated: Oct 05, 2026</p>
+                        <p style="font-size:0.85rem;">Project completion rates and performance metrics.</p>
+                        <a href="404.html" class="btn-dashboard-outline" style="margin-top:0.5rem; width:100%; text-align:center; font-size:0.8rem;"><i class="fa-solid fa-download"></i> Download Report</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const params = new URLSearchParams(window.location.search);
+            const role = params.get('role') || 'admin';
+            const email = params.get('email') || '';
+            const name = params.get('name') || 'Administrator';
+
+            const topbarEmail = document.getElementById('topbarEmail');
+            if (email) {
+                topbarEmail.textContent = email;
+            } else {
+                topbarEmail.textContent = 'No email provided';
+            }
+            document.getElementById('topbarRole').textContent = 'Admin';
+            document.getElementById('welcomeName').textContent = name;
+
+            // Tab Switching
+            const tabLinks = document.querySelectorAll('.tab-link');
+            const tabContents = document.querySelectorAll('.tab-content');
+
+            tabLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    tabLinks.forEach(l => l.classList.remove('active'));
+                    tabContents.forEach(c => c.classList.remove('active'));
+                    link.classList.add('active');
+                    const targetId = link.getAttribute('data-target');
+                    const targetContent = document.getElementById(targetId);
+                    if(targetContent) targetContent.classList.add('active');
+                    closeSidebar();
+                });
+            });
+
+            // Mobile Menu
+            const mobileToggle = document.getElementById('mobileMenuToggle');
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('sidebarOverlay');
+
+            function toggleSidebar() {
+                sidebar.classList.toggle('open');
+                overlay.classList.toggle('active');
+                const icon = mobileToggle.querySelector('i');
+                icon.className = sidebar.classList.contains('open') ? 'fa-solid fa-times' : 'fa-solid fa-bars';
+            }
+
+            function closeSidebar() {
+                sidebar.classList.remove('open');
+                overlay.classList.remove('active');
+                mobileToggle.querySelector('i').className = 'fa-solid fa-bars';
+            }
+
+            mobileToggle.addEventListener('click', toggleSidebar);
+            overlay.addEventListener('click', closeSidebar);
+
+            // Theme Toggle
+            const themeToggle = document.getElementById('theme-toggle');
+            const currentTheme = localStorage.getItem('theme') || 'dark';
+            document.documentElement.setAttribute('data-theme', currentTheme);
+            themeToggle.innerHTML = currentTheme === 'dark' ? '<i class="fa-solid fa-sun"></i>' : '<i class="fa-solid fa-moon"></i>';
+
+            themeToggle.addEventListener('click', () => {
+                let theme = document.documentElement.getAttribute('data-theme');
+                if (theme === 'dark') {
+                    document.documentElement.removeAttribute('data-theme');
+                    localStorage.setItem('theme', 'light');
+                    themeToggle.innerHTML = '<i class="fa-solid fa-moon"></i>';
+                } else {
+                    document.documentElement.setAttribute('data-theme', 'dark');
+                    localStorage.setItem('theme', 'dark');
+                    themeToggle.innerHTML = '<i class="fa-solid fa-sun"></i>';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

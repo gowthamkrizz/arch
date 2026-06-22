@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Researcher Dashboard | Stackly Archaeology</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        body {
+            background-color: var(--bg-color);
+            margin: 0;
+            display: flex;
+            min-height: 100vh;
+            font-family: var(--font-main);
+        }
+
+        .sidebar {
+            width: 260px;
+            background: var(--card-bg);
+            border-right: 1px solid var(--glass-border);
+            display: flex;
+            flex-direction: column;
+            padding: 1.5rem;
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100vh;
+            overflow-y: auto;
+            z-index: 1000;
+            transition: transform 0.3s ease;
+        }
+        .sidebar .logo {
+            font-size: 1.5rem;
+            margin-bottom: 2.5rem;
+            text-decoration: none;
+            color: var(--primary-color);
+            font-family: var(--font-heading);
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: var(--transition);
+        }
+        .sidebar .logo:hover {
+            transform: scale(1.05);
+        }
+        .nav-menu {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.3rem;
+            padding: 0;
+            flex: 1;
+        }
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--text-color);
+            padding: 0.7rem 1rem;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: var(--transition);
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+        .nav-menu a:hover {
+            background: rgba(201, 151, 76, 0.1);
+            color: var(--primary-color);
+            transform: translateX(5px);
+        }
+        .nav-menu a.active {
+            background: rgba(201, 151, 76, 0.15);
+            color: var(--primary-color);
+            border-right: 3px solid var(--primary-color);
+        }
+        .nav-menu a i {
+            width: 20px;
+            text-align: center;
+            font-size: 1rem;
+        }
+        .nav-menu .logout {
+            color: #e74c3c;
+            margin-top: auto;
+            border-top: 1px solid var(--glass-border);
+            padding-top: 1rem;
+        }
+        .nav-menu .logout:hover {
+            background: rgba(231, 76, 60, 0.1);
+            color: #e74c3c;
+        }
+
+        .mobile-menu-toggle {
+            display: none;
+            position: fixed;
+            top: 15px;
+            right: 20px;
+            z-index: 1001;
+            background: var(--card-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 8px;
+            padding: 10px 14px;
+            cursor: pointer;
+            color: var(--text-color);
+            font-size: 1.5rem;
+            transition: var(--transition);
+        }
+        .mobile-menu-toggle:hover {
+            background: var(--primary-color);
+            color: #fff;
+        }
+
+        .sidebar-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+
+        .main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            margin-left: 260px;
+            min-height: 100vh;
+        }
+
+        .topbar {
+            height: 65px;
+            background: var(--card-bg);
+            border-bottom: 1px solid var(--glass-border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 50;
+        }
+        .topbar h2 {
+            font-size: 1.2rem;
+            font-family: var(--font-heading);
+            margin: 0;
+        }
+        .topbar-right {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .topbar-email {
+            font-size: 0.85rem;
+            font-weight: 500;
+            opacity: 0.85;
+        }
+        .topbar-role {
+            background: var(--primary-color);
+            color: #fff;
+            padding: 0.15rem 0.7rem;
+            border-radius: 20px;
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+        .topbar .theme-toggle {
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--text-color);
+            font-size: 1.2rem;
+            transition: var(--transition);
+        }
+        .topbar .theme-toggle:hover {
+            color: var(--primary-color);
+        }
+
+        .dashboard-content {
+            padding: 2rem;
+            overflow-y: auto;
+            animation: fadeIn 0.5s ease;
+            flex: 1;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeUp 0.4s ease;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .widget {
+            background: var(--card-bg);
+            border: 1px solid var(--glass-border);
+            padding: 1.5rem;
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+        .widget::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-color), #e2b364, var(--primary-color));
+            background-size: 200% 100%;
+            animation: shimmer 3s ease-in-out infinite;
+        }
+        @keyframes shimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+        .widget:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+        }
+        .widget-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--text-color);
+            opacity: 0.8;
+            font-size: 0.85rem;
+            margin-bottom: 0.3rem;
+        }
+        .widget-header i {
+            font-size: 1.3rem;
+            opacity: 0.6;
+            transition: var(--transition);
+        }
+        .widget:hover .widget-header i {
+            opacity: 1;
+            transform: rotate(10deg) scale(1.1);
+        }
+        .widget-value {
+            font-size: 2rem;
+            font-family: var(--font-heading);
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary-color), #e2b364);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .widget-label {
+            font-size: 0.8rem;
+            opacity: 0.7;
+        }
+
+        .btn-dashboard {
+            background: linear-gradient(135deg, var(--primary-color), #b8860b);
+            color: #fff;
+            border: none;
+            padding: 0.5rem 1.2rem;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            font-size: 0.85rem;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+        .btn-dashboard:hover {
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 8px 25px rgba(201, 151, 76, 0.3);
+        }
+        .btn-dashboard-outline {
+            background: transparent;
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+            padding: 0.4rem 1rem;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            font-size: 0.8rem;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+        .btn-dashboard-outline:hover {
+            background: var(--primary-color);
+            color: #fff;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(201, 151, 76, 0.3);
+        }
+
+        .chart-placeholder {
+            height: 160px;
+            background: rgba(255,255,255,0.03);
+            border: 1px dashed var(--glass-border);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-color);
+            transition: var(--transition);
+        }
+        .chart-placeholder:hover {
+            background: rgba(255,255,255,0.06);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 0.5rem;
+            min-width: 500px;
+        }
+        th, td {
+            padding: 0.7rem 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--glass-border);
+        }
+        th {
+            color: var(--primary-color);
+            font-weight: 600;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        tr {
+            transition: var(--transition);
+        }
+        tr:hover {
+            background: rgba(201, 151, 76, 0.05);
+        }
+
+        .welcome-banner {
+            background: linear-gradient(135deg, rgba(201, 151, 76, 0.1), rgba(201, 151, 76, 0.05));
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            padding: 1.5rem 2rem;
+            margin-bottom: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+        .welcome-banner::after {
+            content: '🔬';
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 3.5rem;
+            opacity: 0.05;
+        }
+        .welcome-banner h3 {
+            margin: 0;
+            font-size: 1.3rem;
+        }
+        .welcome-banner p {
+            opacity: 0.8;
+            margin: 0.3rem 0 0 0;
+            font-size: 0.95rem;
+        }
+
+        .status-badge {
+            padding: 0.15rem 0.7rem;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+        .status-badge.active {
+            background: rgba(76, 175, 80, 0.15);
+            color: #4caf50;
+        }
+        .status-badge.completed {
+            background: rgba(33, 150, 243, 0.15);
+            color: #2196f3;
+        }
+        .status-badge.pending {
+            background: rgba(255, 152, 0, 0.15);
+            color: #ff9800;
+        }
+
+        .quick-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        .quick-stat {
+            background: var(--card-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 8px;
+            padding: 1rem;
+            text-align: center;
+            transition: var(--transition);
+        }
+        .quick-stat:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        .quick-stat .stat-icon {
+            font-size: 1.5rem;
+        }
+        .quick-stat .stat-number {
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: var(--primary-color);
+        }
+        .quick-stat .stat-label {
+            font-size: 0.75rem;
+            opacity: 0.7;
+        }
+
+        .table-container {
+            background: var(--card-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            overflow-x: auto;
+            transition: var(--transition);
+        }
+        .table-container:hover {
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        @media screen and (max-width: 768px) {
+            .sidebar {
+                transform: translateX(-100%);
+                width: 280px;
+                padding: 1rem;
+            }
+            .sidebar.open {
+                transform: translateX(0);
+            }
+            .sidebar-overlay.active {
+                display: block;
+            }
+            .mobile-menu-toggle {
+                display: block;
+            }
+            .main-content {
+                margin-left: 0;
+            }
+            .topbar {
+                padding: 0 1rem;
+                height: 55px;
+            }
+            .topbar h2 {
+                font-size: 0.95rem;
+            }
+            .topbar-email {
+                display: none;
+            }
+            .dashboard-content {
+                padding: 1rem;
+            }
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            .welcome-banner {
+                padding: 1rem;
+            }
+            .welcome-banner h3 {
+                font-size: 1.1rem;
+            }
+            .quick-stats {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .quick-stats {
+                grid-template-columns: 1fr;
+            }
+            .topbar h2 {
+                font-size: 0.85rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <button class="mobile-menu-toggle" id="mobileMenuToggle">
+        <i class="fa-solid fa-bars"></i>
+    </button>
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <aside class="sidebar" id="sidebar">
+        <a href="index.html" class="logo-btn" style="margin-bottom: 2.5rem;">
+    <img src="assets/images/stackly-logo.webp" style="height:35px; width:auto; display:block;" alt="Stackly Logo">
+</a>
+        <ul class="nav-menu">
+            <li><a href="dashboard2.html" class="active"><i class="fa-solid fa-microscope"></i> Dashboard</a></li>
+            <li><a href="#" class="tab-link" data-target="analytics-tab"><i class="fa-solid fa-chart-line"></i> Analytics</a></li>
+            <li><a href="#" class="tab-link" data-target="data-tab"><i class="fa-solid fa-database"></i> Data Management</a></li>
+            <li><a href="#" class="tab-link" data-target="publications-tab"><i class="fa-solid fa-book"></i> Publications</a></li>
+            <li><a href="#" class="tab-link" data-target="research-tab"><i class="fa-solid fa-flask"></i> Research</a></li>
+            <li><a href="#" class="tab-link" data-target="profile-tab"><i class="fa-solid fa-user"></i> Profile</a></li>
+            <li><a href="index.html" class="logout"><i class="fa-solid fa-right-from-bracket"></i> Logout</a></li>
+        </ul>
+    </aside>
+
+    <main class="main-content">
+        <header class="topbar">
+            <h2>Researcher Dashboard</h2>
+            <div class="topbar-right">
+                <span class="topbar-email" id="topbarEmail"></span>
+                <span class="topbar-role" id="topbarRole">Researcher</span>
+                <button id="theme-toggle" class="theme-toggle"><i class="fa-solid fa-sun"></i></button>
+            </div>
+        </header>
+
+        <section class="dashboard-content">
+            <!-- Dashboard Tab -->
+            <div id="dashboard-tab" class="tab-content active">
+                <div class="welcome-banner">
+                    <h3>🔬 Welcome, <span id="welcomeName">Researcher</span>!</h3>
+                    <p>Your research data and analytics dashboard.</p>
+                </div>
+
+                <div class="dashboard-grid">
+                    <div class="widget">
+                        <div class="widget-header">
+                            <span>Active Research</span>
+                            <i class="fa-solid fa-flask"></i>
+                        </div>
+                        <div class="widget-value">5</div>
+                        <div class="widget-label">3 ongoing, 2 pending</div>
+                    </div>
+                    <div class="widget">
+                        <div class="widget-header">
+                            <span>Artifacts Analyzed</span>
+                            <i class="fa-solid fa-gem"></i>
+                        </div>
+                        <div class="widget-value">847</div>
+                        <div class="widget-label">+42 this month</div>
+                    </div>
+                    <div class="widget">
+                        <div class="widget-header">
+                            <span>Data Exports</span>
+                            <i class="fa-solid fa-file-export"></i>
+                        </div>
+                        <div class="widget-value">23</div>
+                        <div class="widget-label">12 this quarter</div>
+                    </div>
+                    <div class="widget">
+                        <div class="widget-header">
+                            <span>Citations</span>
+                            <i class="fa-solid fa-quote-right"></i>
+                        </div>
+                        <div class="widget-value">32</div>
+                        <div class="widget-label">8 new this year</div>
+                    </div>
+                </div>
+
+                <div class="quick-stats">
+                    <div class="quick-stat">
+                        <div class="stat-icon">📊</div>
+                        <div class="stat-number">78%</div>
+                        <div class="stat-label">Research Completion</div>
+                    </div>
+                    <div class="quick-stat">
+                        <div class="stat-icon">📈</div>
+                        <div class="stat-number">+12%</div>
+                        <div class="stat-label">Discovery Rate</div>
+                    </div>
+                    <div class="quick-stat">
+                        <div class="stat-icon">🏛️</div>
+                        <div class="stat-number">15</div>
+                        <div class="stat-label">Sites Studied</div>
+                    </div>
+                    <div class="quick-stat">
+                        <div class="stat-icon">📝</div>
+                        <div class="stat-number">9</div>
+                        <div class="stat-label">Papers Published</div>
+                    </div>
+                </div>
+
+                <div class="dashboard-grid">
+                    <div class="widget">
+                        <div class="widget-header">
+                            <span>Artifact Discovery Trend (2026)</span>
+                            <i class="fa-solid fa-chart-pie"></i>
+                        </div>
+                        <div class="chart-placeholder">
+                            <div style="text-align:center;">
+                                <i class="fa-solid fa-chart-line fa-3x"></i>
+                                <p style="margin-top:0.5rem; font-size:0.8rem; opacity:0.6;">Q3: +28% discovery rate</p>
+                            </div>
+                        </div>
+                        <a href="404.html" class="btn-dashboard" style="margin-top:0.8rem; text-align:center; font-size:0.8rem;">View Full Analytics</a>
+                    </div>
+                    <div class="widget">
+                        <div class="widget-header">
+                            <span>Funding Allocation</span>
+                            <i class="fa-solid fa-coins"></i>
+                        </div>
+                        <div class="chart-placeholder">
+                            <div style="text-align:center;">
+                                <i class="fa-solid fa-chart-simple fa-3x"></i>
+                                <p style="margin-top:0.5rem; font-size:0.8rem; opacity:0.6;">$1.2M allocated for 2026</p>
+                            </div>
+                        </div>
+                        <a href="404.html" class="btn-dashboard" style="margin-top:0.8rem; text-align:center; font-size:0.8rem;">View Budget Details</a>
+                    </div>
+                </div>
+
+                <div class="table-container">
+                    <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; margin-bottom:0.5rem;">
+                        <h3 style="margin:0; font-size:1.1rem;">Recent Data Exports</h3>
+                        <a href="404.html" class="btn-dashboard" style="font-size:0.75rem;">+ Export New</a>
+                    </div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Dataset</th>
+                                <th>Format</th>
+                                <th>Date</th>
+                                <th>Size</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Yucatan LIDAR Coordinates</td>
+                                <td>.CSV</td>
+                                <td>Oct 12, 2026</td>
+                                <td>24 MB</td>
+                                <td><a href="404.html" class="btn-dashboard-outline" style="padding:0.2rem 0.7rem; font-size:0.7rem; text-decoration:none;"><i class="fa-solid fa-download"></i></a></td>
+                            </tr>
+                            <tr>
+                                <td>Mediterranean Isotope Raw Data</td>
+                                <td>.JSON</td>
+                                <td>Oct 10, 2026</td>
+                                <td>18 MB</td>
+                                <td><a href="404.html" class="btn-dashboard-outline" style="padding:0.2rem 0.7rem; font-size:0.7rem; text-decoration:none;"><i class="fa-solid fa-download"></i></a></td>
+                            </tr>
+                            <tr>
+                                <td>Desert Tombs 3D Scans</td>
+                                <td>.STL</td>
+                                <td>Oct 08, 2026</td>
+                                <td>156 MB</td>
+                                <td><a href="404.html" class="btn-dashboard-outline" style="padding:0.2rem 0.7rem; font-size:0.7rem; text-decoration:none;"><i class="fa-solid fa-download"></i></a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Analytics Tab -->
+            <div id="analytics-tab" class="tab-content">
+                <h2 style="margin-bottom:1.5rem; font-size:1.4rem;">📊 Research Analytics</h2>
+                <div class="dashboard-grid">
+                    <div class="widget">
+                        <h3 style="font-size:1.1rem;">Discovery Rate</h3>
+                        <div style="display:flex; align-items:flex-end; gap:1rem; margin:0.3rem 0;">
+                            <span style="font-size:2.2rem; font-weight:700; background:linear-gradient(135deg, var(--primary-color), #e2b364); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;">47</span>
+                            <span style="opacity:0.6; font-size:0.9rem;">artifacts/month</span>
+                        </div>
+                        <div style="width:100%; height:6px; background:var(--glass-border); border-radius:4px; overflow:hidden;">
+                            <div style="width:78%; height:100%; background:var(--primary-color); border-radius:4px;"></div>
+                        </div>
+                        <p style="font-size:0.8rem; opacity:0.7; margin-top:0.3rem;">↑ 12% from last quarter</p>
+                        <a href="404.html" class="btn-dashboard-outline" style="margin-top:0.5rem; text-align:center; width:100%; font-size:0.8rem;">View Full Report</a>
+                    </div>
+                    <div class="widget">
+                        <h3 style="font-size:1.1rem;">Research Impact</h3>
+                        <div style="display:flex; align-items:flex-end; gap:1rem; margin:0.3rem 0;">
+                            <span style="font-size:2.2rem; font-weight:700; background:linear-gradient(135deg, var(--primary-color), #e2b364); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;">32</span>
+                            <span style="opacity:0.6; font-size:0.9rem;">citations</span>
+                        </div>
+                        <div style="width:100%; height:6px; background:var(--glass-border); border-radius:4px; overflow:hidden;">
+                            <div style="width:65%; height:100%; background:var(--primary-color); border-radius:4px;"></div>
+                        </div>
+                        <p style="font-size:0.8rem; opacity:0.7; margin-top:0.3rem;">↑ 8% from last year</p>
+                        <a href="404.html" class="btn-dashboard-outline" style="margin-top:0.5rem; text-align:center; width:100%; font-size:0.8rem;">View Details</a>
+                    </div>
+                    <div class="widget">
+                        <h3 style="font-size:1.1rem;">Project Completion</h3>
+                        <div style="display:flex; align-items:flex-end; gap:1rem; margin:0.3rem 0;">
+                            <span style="font-size:2.2rem; font-weight:700; background:linear-gradient(135deg, var(--primary-color), #e2b364); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;">5</span>
+                            <span style="opacity:0.6; font-size:0.9rem;">active projects</span>
+                        </div>
+                        <div style="width:100%; height:6px; background:var(--glass-border); border-radius:4px; overflow:hidden;">
+                            <div style="width:60%; height:100%; background:var(--primary-color); border-radius:4px;"></div>
+                        </div>
+                        <p style="font-size:0.8rem; opacity:0.7; margin-top:0.3rem;">60% completion rate</p>
+                        <a href="404.html" class="btn-dashboard-outline" style="margin-top:0.5rem; text-align:center; width:100%; font-size:0.8rem;">View Projects</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Data Management Tab -->
+            <div id="data-tab" class="tab-content">
+                <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; margin-bottom:1.5rem;">
+                    <h2 style="margin:0; font-size:1.4rem;">📁 Data Management</h2>
+                    <a href="404.html" class="btn-dashboard" style="font-size:0.8rem;">+ Upload Dataset</a>
+                </div>
+                <div class="widget">
+                    <h3 style="font-size:1.1rem;">Research Datasets</h3>
+                    <p style="opacity:0.7; font-size:0.85rem;">Manage your research data and collaborate with team members</p>
+                    <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap:1rem; margin-top:1rem;">
+                        <a href="404.html" style="background:rgba(255,255,255,0.03); border-radius:8px; padding:1rem; text-align:center; text-decoration:none; color:var(--text-color); transition:var(--transition);">
+                            <i class="fa-solid fa-folder-open fa-2x" style="color:var(--primary-color);"></i>
+                            <div style="font-weight:600; margin-top:0.3rem; font-size:0.9rem;">LIDAR Data</div>
+                            <div style="font-size:0.75rem; opacity:0.6;">12 files</div>
+                        </a>
+                        <a href="404.html" style="background:rgba(255,255,255,0.03); border-radius:8px; padding:1rem; text-align:center; text-decoration:none; color:var(--text-color); transition:var(--transition);">
+                            <i class="fa-solid fa-folder-open fa-2x" style="color:var(--primary-color);"></i>
+                            <div style="font-weight:600; margin-top:0.3rem; font-size:0.9rem;">Isotope Analysis</div>
+                            <div style="font-size:0.75rem; opacity:0.6;">8 files</div>
+                        </a>
+                        <a href="404.html" style="background:rgba(255,255,255,0.03); border-radius:8px; padding:1rem; text-align:center; text-decoration:none; color:var(--text-color); transition:var(--transition);">
+                            <i class="fa-solid fa-folder-open fa-2x" style="color:var(--primary-color);"></i>
+                            <div style="font-weight:600; margin-top:0.3rem; font-size:0.9rem;">3D Scans</div>
+                            <div style="font-size:0.75rem; opacity:0.6;">24 files</div>
+                        </a>
+                        <a href="404.html" style="background:rgba(255,255,255,0.03); border-radius:8px; padding:1rem; text-align:center; text-decoration:none; color:var(--text-color); transition:var(--transition);">
+                            <i class="fa-solid fa-folder-open fa-2x" style="color:var(--primary-color);"></i>
+                            <div style="font-weight:600; margin-top:0.3rem; font-size:0.9rem;">Field Reports</div>
+                            <div style="font-size:0.75rem; opacity:0.6;">18 files</div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Publications Tab -->
+            <div id="publications-tab" class="tab-content">
+                <h2 style="margin-bottom:1.5rem; font-size:1.4rem;">📚 My Publications</h2>
+                <div class="widget" style="margin-bottom:0.8rem;">
+                    <h4 style="font-size:1rem;">"Decoding the Sentinel Stele"</h4>
+                    <p style="font-size:0.85rem; opacity:0.7;">Journal of Archaeological Science, Vol. 45, 2026</p>
+                    <div style="display:flex; gap:1rem; margin-top:0.3rem; flex-wrap:wrap; align-items:center;">
+                        <span class="status-badge active">Published</span>
+                        <span style="font-size:0.8rem; opacity:0.6;">DOI: 10.1234/arch.2026.45</span>
+                        <a href="404.html" class="btn-dashboard-outline" style="padding:0.2rem 0.7rem; font-size:0.7rem; text-decoration:none;">View</a>
+                    </div>
+                </div>
+                <div class="widget" style="margin-bottom:0.8rem;">
+                    <h4 style="font-size:1rem;">"LIDAR Mapping of Yucatan Peninsula"</h4>
+                    <p style="font-size:0.85rem; opacity:0.7;">Remote Sensing in Archaeology, Vol. 12, 2025</p>
+                    <div style="display:flex; gap:1rem; margin-top:0.3rem; flex-wrap:wrap; align-items:center;">
+                        <span class="status-badge pending">Under Review</span>
+                        <span style="font-size:0.8rem; opacity:0.6;">Submitted: Aug 2025</span>
+                        <a href="404.html" class="btn-dashboard-outline" style="padding:0.2rem 0.7rem; font-size:0.7rem; text-decoration:none;">View</a>
+                    </div>
+                </div>
+                <div class="widget">
+                    <h4 style="font-size:1rem;">"Isotopic Analysis of Desert Nomads"</h4>
+                    <p style="font-size:0.85rem; opacity:0.7;">Bioarchaeology International, Vol. 8, 2025</p>
+                    <div style="display:flex; gap:1rem; margin-top:0.3rem; flex-wrap:wrap; align-items:center;">
+                        <span class="status-badge completed">Published</span>
+                        <span style="font-size:0.8rem; opacity:0.6;">DOI: 10.5678/bioarch.2025.8</span>
+                        <a href="404.html" class="btn-dashboard-outline" style="padding:0.2rem 0.7rem; font-size:0.7rem; text-decoration:none;">View</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Research Tab -->
+            <div id="research-tab" class="tab-content">
+                <h2 style="margin-bottom:1.5rem; font-size:1.4rem;">🧪 Current Research</h2>
+                <div class="dashboard-grid">
+                    <div class="widget">
+                        <h3 style="font-size:1.1rem;">🏺 Ceramic Analysis</h3>
+                        <p style="opacity:0.7; font-size:0.85rem;">Project: Mediterranean Basin</p>
+                        <p style="font-size:0.9rem;">Analyzing 200+ ceramic fragments from the Sunken City site.</p>
+                        <div style="width:100%; height:6px; background:var(--glass-border); border-radius:4px; overflow:hidden; margin:0.3rem 0;">
+                            <div style="width:75%; height:100%; background:var(--primary-color); border-radius:4px;"></div>
+                        </div>
+                        <p style="font-size:0.8rem; opacity:0.6;">75% complete</p>
+                        <a href="404.html" class="btn-dashboard-outline" style="margin-top:0.5rem; text-align:center; width:100%; font-size:0.8rem;">View Progress</a>
+                    </div>
+                    <div class="widget">
+                        <h3 style="font-size:1.1rem;">🧬 DNA Analysis</h3>
+                        <p style="opacity:0.7; font-size:0.85rem;">Project: Desert Tombs</p>
+                        <p style="font-size:0.9rem;">Extracting and analyzing ancient DNA from skeletal remains.</p>
+                        <div style="width:100%; height:6px; background:var(--glass-border); border-radius:4px; overflow:hidden; margin:0.3rem 0;">
+                            <div style="width:45%; height:100%; background:var(--primary-color); border-radius:4px;"></div>
+                        </div>
+                        <p style="font-size:0.8rem; opacity:0.6;">45% complete</p>
+                        <a href="404.html" class="btn-dashboard-outline" style="margin-top:0.5rem; text-align:center; width:100%; font-size:0.8rem;">View Progress</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Profile Tab -->
+            <div id="profile-tab" class="tab-content">
+                <h2 style="margin-bottom:1.5rem; font-size:1.4rem;">👤 My Profile</h2>
+                <div class="widget">
+                    <div style="display:flex; align-items:center; gap:2rem; flex-wrap:wrap;">
+                        <img src="assets/images/profile_avatar.png" onerror="this.src='https://ui-avatars.com/api/?name=Researcher&background=C9974C&color=fff&size=100'" style="width:100px; height:100px; border-radius:50%; border:3px solid var(--primary-color);">
+                        <div>
+                            <h3 style="margin:0; font-size:1.3rem;" id="profileName">Researcher</h3>
+                            <p style="opacity:0.7; font-size:0.95rem;" id="profileEmail"></p>
+                            <span class="topbar-role" id="profileRole" style="font-size:0.7rem; background:var(--primary-color); color:#fff; padding:0.15rem 0.7rem; border-radius:20px;">Researcher</span>
+                            <p style="margin-top:0.8rem; opacity:0.8; font-size:0.9rem;">Member since: Jan 2025 | Field: Archaeology</p>
+                            <a href="404.html" class="btn-dashboard-outline" style="margin-top:0.5rem; font-size:0.8rem;">Edit Profile</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const params = new URLSearchParams(window.location.search);
+            const role = params.get('role') || 'researcher';
+            const email = params.get('email') || '';
+            const name = params.get('name') || 'Researcher';
+
+            const topbarEmail = document.getElementById('topbarEmail');
+            if (email) {
+                topbarEmail.textContent = email;
+            } else {
+                topbarEmail.textContent = 'No email provided';
+            }
+            document.getElementById('topbarRole').textContent = 'Researcher';
+            document.getElementById('welcomeName').textContent = name;
+            document.getElementById('profileName').textContent = name;
+            document.getElementById('profileEmail').textContent = email;
+            document.getElementById('profileRole').textContent = 'Researcher';
+
+            // Tab Switching
+            const tabLinks = document.querySelectorAll('.tab-link');
+            const tabContents = document.querySelectorAll('.tab-content');
+
+            tabLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    tabLinks.forEach(l => l.classList.remove('active'));
+                    tabContents.forEach(c => c.classList.remove('active'));
+                    link.classList.add('active');
+                    const targetId = link.getAttribute('data-target');
+                    const targetContent = document.getElementById(targetId);
+                    if(targetContent) targetContent.classList.add('active');
+                    closeSidebar();
+                });
+            });
+
+            // Mobile Menu
+            const mobileToggle = document.getElementById('mobileMenuToggle');
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('sidebarOverlay');
+
+            function toggleSidebar() {
+                sidebar.classList.toggle('open');
+                overlay.classList.toggle('active');
+                const icon = mobileToggle.querySelector('i');
+                icon.className = sidebar.classList.contains('open') ? 'fa-solid fa-times' : 'fa-solid fa-bars';
+            }
+
+            function closeSidebar() {
+                sidebar.classList.remove('open');
+                overlay.classList.remove('active');
+                mobileToggle.querySelector('i').className = 'fa-solid fa-bars';
+            }
+
+            mobileToggle.addEventListener('click', toggleSidebar);
+            overlay.addEventListener('click', closeSidebar);
+
+            // Theme Toggle
+            const themeToggle = document.getElementById('theme-toggle');
+            const currentTheme = localStorage.getItem('theme') || 'dark';
+            document.documentElement.setAttribute('data-theme', currentTheme);
+            themeToggle.innerHTML = currentTheme === 'dark' ? '<i class="fa-solid fa-sun"></i>' : '<i class="fa-solid fa-moon"></i>';
+
+            themeToggle.addEventListener('click', () => {
+                let theme = document.documentElement.getAttribute('data-theme');
+                if (theme === 'dark') {
+                    document.documentElement.removeAttribute('data-theme');
+                    localStorage.setItem('theme', 'light');
+                    themeToggle.innerHTML = '<i class="fa-solid fa-moon"></i>';
+                } else {
+                    document.documentElement.setAttribute('data-theme', 'dark');
+                    localStorage.setItem('theme', 'dark');
+                    themeToggle.innerHTML = '<i class="fa-solid fa-sun"></i>';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

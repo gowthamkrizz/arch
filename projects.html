@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Excavation Projects | Stackly Archaeology</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .btn-login-nav {
+            background: var(--primary-color);
+            color: #fff;
+            padding: 0.4rem 1.2rem;
+            border-radius: 4px;
+            font-weight: 600;
+            transition: var(--transition);
+            text-decoration: none;
+            font-size: 0.95rem;
+            display: inline-block;
+            text-align: center;
+            line-height: 1.5;
+        }
+        .btn-login-nav:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(201, 151, 76, 0.3);
+        }
+        .btn-nav {
+            padding: 0.4rem 1.2rem;
+            font-size: 0.95rem;
+            display: inline-block;
+            text-align: center;
+            line-height: 1.5;
+        }
+        .hero-projects {
+            min-height: 100vh !important;
+            height: 100vh !important;
+            padding-bottom: 6rem !important;
+        }
+        .hero-projects .hero-content h1 {
+            font-size: 4rem !important;
+        }
+        .hero-projects .hero-content p {
+            font-size: 1.2rem !important;
+        }
+        .funding-btn-wrapper {
+            display: flex;
+            justify-content: center;
+            margin-top: 3rem;
+        }
+
+        /* Mobile hero fixes - Projects (matching other pages) */
+        @media screen and (max-width: 768px) {
+            .hero-projects {
+                min-height: 90vh !important;
+                height: auto !important;
+                padding: 5rem 1rem 3rem !important;
+                display: flex !important;
+                align-items: center !important;
+                justify-content: center !important;
+            }
+            .hero-projects .hero-content {
+                padding: 1rem !important;
+                width: 100% !important;
+                text-align: center !important;
+            }
+            .hero-projects .hero-content h1 {
+                font-size: 2.2rem !important;
+                text-align: center !important;
+                width: 100% !important;
+            }
+            .hero-projects .hero-content p {
+                font-size: 0.95rem !important;
+                text-align: center !important;
+                width: 100% !important;
+                padding: 0 0.5rem !important;
+            }
+            .hero-projects .hero-buttons {
+                display: flex !important;
+                flex-direction: column !important;
+                align-items: center !important;
+                gap: 0.6rem !important;
+                width: 100% !important;
+            }
+            .hero-projects .hero-buttons .btn {
+                width: 100% !important;
+                max-width: 280px !important;
+                text-align: center !important;
+                padding: 0.7rem 1.2rem !important;
+                font-size: 0.9rem !important;
+            }
+        }
+
+        @media screen and (max-width: 420px) {
+            .hero-projects {
+                min-height: 80vh !important;
+                padding: 4rem 0.5rem 2rem !important;
+            }
+            .hero-projects .hero-content h1 {
+                font-size: 1.7rem !important;
+            }
+            .hero-projects .hero-content p {
+                font-size: 0.85rem !important;
+            }
+            .hero-projects .hero-buttons .btn {
+                max-width: 220px !important;
+                padding: 0.5rem 1rem !important;
+                font-size: 0.8rem !important;
+            }
+        }
+
+        @media screen and (max-width: 360px) {
+            .hero-projects .hero-content h1 {
+                font-size: 1.4rem !important;
+            }
+            .hero-projects .hero-content p {
+                font-size: 0.75rem !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="spotlight"></div>
+    <div class="scroll-progress" id="scroll-progress"></div>
+
+    <nav class="navbar">
+       <a href="index.html" class="logo-btn">
+    <img src="assets/images/stackly-logo.webp" class="logo-img" alt="Stackly Logo">
+</a>
+        <button class="mobile-menu-btn"><i class="fa-solid fa-bars"></i></button>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="projects.html" style="color:var(--primary-color)">Projects</a></li>
+            <li><a href="discoveries.html">Discoveries</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="login.html" class="btn-login-nav">Login</a></li>
+            <li><a href="signup.html" class="btn btn-nav">Sign Up</a></li>
+            <li><button id="theme-toggle" class="theme-toggle"><i class="fa-solid fa-sun"></i></button></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Banner - Full Size like Home Page -->
+    <section class="hero hero-projects">
+        <img src="assets/images/b1 (5).webp" alt="Excavation Projects" class="hero-bg" style="filter: brightness(0.6);">
+        <div class="hero-overlay"></div>
+        <div class="particles-container"></div>
+        <div class="hero-content">
+            <h1>Excavation Projects</h1>
+            <p>Explore our active and historic digs around the globe.</p>
+            <div class="hero-buttons">
+                <a href="404.html" class="btn">View All Projects</a>
+                <a href="contact.html" class="btn btn-outline">Get Involved</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="ongoing">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Ongoing Excavations</h2>
+            <div class="grid-2">
+                <div class="hover-card" data-aos="fade-right">
+                    <img src="assets/images/The Sunken City.webp" alt="Project Alpha">
+                    <h3>Project Alpha: The Sunken City</h3>
+                    <p>Status: <strong>Active (Year 3)</strong></p>
+                    <p>Location: Mediterranean Basin</p>
+                    <p style="margin-top: 1rem;">Utilizing deep-sea submersibles and acoustic mapping to reconstruct a coastal trading hub lost to rising sea levels in the late Bronze Age.</p>
+                </div>
+                <div class="hover-card" data-aos="fade-left">
+                    <img src="assets/images/Highland Temples.webp" style="filter: hue-rotate(45deg);" alt="Project Beta">
+                    <h3>Project Beta: Highland Temples</h3>
+                    <p>Status: <strong>Active (Year 1)</strong></p>
+                    <p>Location: Andes Mountains</p>
+                    <p style="margin-top: 1rem;">Excavating a high-altitude ceremonial complex that challenges our understanding of pre-Columbian climatic adaptation and social hierarchy.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="completed" style="background: var(--card-bg);">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Completed Projects</h2>
+            <div class="grid-3">
+                <div class="hover-card" data-aos="fade-up">
+                    <h4>The Desert Tombs (2020-2024)</h4>
+                    <p>Uncovered a necropolis containing intact sarcophagi and extensive hieroglyphic texts detailing the transition between two dynasties.</p>
+                </div>
+                <div class="hover-card" data-aos="fade-up" data-aos-delay="100">
+                    <h4>Valley of Kings Survey (2018-2021)</h4>
+                    <p>Comprehensive LIDAR scan of the greater valley area, resulting in the identification of 12 new potential tomb entrances.</p>
+                </div>
+                <div class="hover-card" data-aos="fade-up" data-aos-delay="200">
+                    <h4>Celtic Hillforts (2015-2018)</h4>
+                    <p>Excavation of a massive Iron Age defensive structure, revealing intricate metalworking workshops and trade goods from across Europe.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="mapping">
+        <div class="container">
+            <div class="grid-2">
+                <div data-aos="fade-right">
+                    <h2 class="section-title" style="text-align: left;">Site Mapping & Surveys</h2>
+                    <p>Before any physical excavation begins, Stackly employs state-of-the-art surveying techniques. This minimizes ecological impact and ensures we only excavate where necessary.</p>
+                    <ul style="list-style: none; margin-top: 1.5rem; display: flex; flex-direction: column; gap: 1rem;">
+                        <li><i class="fa-solid fa-satellite" style="color:var(--primary-color)"></i> Satellite Photogrammetry</li>
+                        <li><i class="fa-solid fa-plane" style="color:var(--primary-color)"></i> Aerial LIDAR Scans</li>
+                        <li><i class="fa-solid fa-wifi" style="color:var(--primary-color)"></i> Ground-Penetrating Radar (GPR)</li>
+                    </ul>
+                </div>
+                <div data-aos="fade-left">
+                    <img src="assets/images/Site Overview (Sector 4).webp" style="width:100%; border-radius:12px; border:1px solid var(--glass-border); filter: grayscale(100%) brightness(1.2);" alt="Mapping Tech">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="project-timeline" style="background: var(--card-bg);">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Standard Project Timeline</h2>
+            <div class="timeline">
+                <div class="timeline-item left" data-aos="fade-right">
+                    <div class="timeline-content">
+                        <h3>Phase 1: Survey & Permitting</h3>
+                        <p>Months 1-6. Non-invasive mapping and securing governmental and ethical approvals.</p>
+                    </div>
+                </div>
+                <div class="timeline-item right" data-aos="fade-left">
+                    <div class="timeline-content">
+                        <h3>Phase 2: Initial Excavation</h3>
+                        <p>Months 7-18. Breaking ground, establishing stratigraphy, and careful artifact recovery.</p>
+                    </div>
+                </div>
+                <div class="timeline-item left" data-aos="fade-right">
+                    <div class="timeline-content">
+                        <h3>Phase 3: Analysis</h3>
+                        <p>Months 19-30. Lab work, carbon dating, isotopic analysis, and 3D digital preservation.</p>
+                    </div>
+                </div>
+                <div class="timeline-item right" data-aos="fade-left">
+                    <div class="timeline-content">
+                        <h3>Phase 4: Publication</h3>
+                        <p>Months 31+. Peer-reviewed publishing and museum exhibition coordination.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="funding">
+        <div class="container text-center">
+            <h2 class="section-title" data-aos="fade-up">Funding & Partnerships</h2>
+            <p style="max-width: 800px; margin: 0 auto 3rem;" data-aos="fade-up">Our large-scale excavations are made possible through generous grants, university partnerships, and private endowments.</p>
+            <div style="display:flex; justify-content:center; gap: 3rem; flex-wrap: wrap; align-items:center;" data-aos="fade-up">
+                <i class="fa-brands fa-aws fa-4x" style="color:var(--text-color); opacity:0.6;"></i>
+                <i class="fa-solid fa-building-columns fa-4x" style="color:var(--text-color); opacity:0.6;"></i>
+                <i class="fa-solid fa-globe fa-4x" style="color:var(--text-color); opacity:0.6;"></i>
+                <i class="fa-solid fa-handshake-angle fa-4x" style="color:var(--text-color); opacity:0.6;"></i>
+            </div>
+            <div class="funding-btn-wrapper">
+                <a href="404.html" class="btn" data-aos="fade-up">Partner With Us</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <a href="index.html" style="margin-bottom: 1rem; display: inline-block;">
+    <img src="assets/images/stackly-logo.webp" class="footer-logo-img" alt="Stackly Logo">
+</a>
+                    <p>Stackly Archaeology is dedicated to the ethical discovery, preservation, and study of ancient human history.</p>
+                    <div class="footer-socials" style="display: flex; gap: 1rem; margin-top: 0.5rem;">
+                    <a href="404.html" title="Facebook" style="color: var(--text-color); font-size: 1.2rem; transition: color 0.3s;" onmouseover="this.style.color='var(--primary-color)'" onmouseout="this.style.color='var(--text-color)'"><i class="fa-brands fa-facebook"></i></a>
+                    <a href="404.html" title="Twitter" style="color: var(--text-color); font-size: 1.2rem; transition: color 0.3s;" onmouseover="this.style.color='var(--primary-color)'" onmouseout="this.style.color='var(--text-color)'"><i class="fa-brands fa-twitter"></i></a>
+                    <a href="404.html" title="Instagram" style="color: var(--text-color); font-size: 1.2rem; transition: color 0.3s;" onmouseover="this.style.color='var(--primary-color)'" onmouseout="this.style.color='var(--text-color)'"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="404.html" title="LinkedIn" style="color: var(--text-color); font-size: 1.2rem; transition: color 0.3s;" onmouseover="this.style.color='var(--primary-color)'" onmouseout="this.style.color='var(--text-color)'"><i class="fa-brands fa-linkedin"></i></a>
+                    <a href="404.html" title="YouTube" style="color: var(--text-color); font-size: 1.2rem; transition: color 0.3s;" onmouseover="this.style.color='var(--primary-color)'" onmouseout="this.style.color='var(--text-color)'"><i class="fa-brands fa-youtube"></i></a>
+                </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="projects.html"> Projects</a></li>
+                        <li><a href="discoveries.html">Discoveries</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Research</h4>
+                    <ul>
+                        <li><a href="404.html">Publications</a></li>
+                        <li><a href="404.html">Methodology</a></li>
+                        <li><a href="404.html">Grants</a></li>
+                        <li><a href="404.html">Partner Universities</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li><i class="fa-solid fa-envelope"></i> hello@stackly.com</li>
+                        <li><i class="fa-solid fa-phone"></i> +91 98765 43210</li>
+                        <li><i class="fa-solid fa-location-dot"></i> MMR Complex, Near Chinna Thirupathi, Salem, Tamil Nadu 636008</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; margin-top: 2rem; padding-top: 1rem; border-top: 1px solid var(--glass-border);">
+                <p style="margin: 0;">&copy; 2026 Stackly Archaeology. All rights reserved.</p>
+                
+            </div>
+        </div>
+    </footer>
+
+    <button id="backToTop" aria-label="Back to Top"><i class="fa-solid fa-arrow-up"></i></button>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

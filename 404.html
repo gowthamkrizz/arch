@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - Page Not Found | Stackly Archaeology</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .error-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-image: url('assets/images/museum_collection.png');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            text-align: center;
+        }
+        .error-overlay {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.7);
+        }
+        .error-content {
+            position: relative;
+            z-index: 1;
+            padding: 3rem;
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            max-width: 600px;
+            width: 90%;
+            margin-top: 60px;
+        }
+        .error-content h1 {
+            font-size: 6rem;
+            color: var(--primary-color);
+            margin: 0;
+            font-family: var(--font-heading);
+            text-shadow: 0 4px 15px rgba(0,0,0,0.5);
+        }
+        .error-content h2 {
+            font-size: 2rem;
+            color: #fff;
+            margin-bottom: 1rem;
+        }
+        .error-content p {
+            color: #ccc;
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--glass-border);
+        }
+        .social-links a {
+            color: #fff;
+            font-size: 1.8rem;
+            transition: var(--transition);
+        }
+        .social-links a:hover {
+            color: var(--primary-color);
+            transform: translateY(-3px);
+        }
+        .btn-404 {
+            background: var(--primary-color);
+            color: #fff;
+            padding: 0.8rem 2rem;
+            border-radius: 4px;
+            text-decoration: none;
+            display: inline-block;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+        .btn-404:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(201, 151, 76, 0.3);
+        }
+    </style>
+</head>
+<body>
+    
+
+    <div class="error-container">
+        <div class="error-overlay"></div>
+        <img src="assets/images/b1 (1).webp" alt="#" class="hero-bg">
+        <div class="error-content">
+            <i class="fa-solid fa-map-location-dot" style="font-size: 4rem; color: var(--primary-color); margin-bottom: 1rem;"></i>
+            <h1>404</h1>
+            <h2>Buried in the Sands of Time</h2>
+            <p>It seems the artifact you're looking for has been lost to history. The page you requested could not be found or has been excavated from this server.</p>
+            <a href="index.html" class="btn-404"><i class="fa-solid fa-arrow-left"></i> Return to Basecamp</a>
+            
+            <div class="social-links">
+                <a href="404.html" title="Facebook"><i class="fa-brands fa-facebook"></i></a>
+                <a href="404.html" title="Twitter"><i class="fa-brands fa-twitter"></i></a>
+                <a href="404.html" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                <a href="404.html" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+                <a href="404.html" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

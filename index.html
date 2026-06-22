@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Stackly Archaeology - Uncovering the Secrets of Ancient Civilizations">
+    <title>Stackly Archaeology</title>
+    <!-- Fonts -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <!-- AOS Animation CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .btn-login-nav {
+            background: var(--primary-color);
+            color: #fff;
+            padding: 0.4rem 1.2rem;
+            border-radius: 4px;
+            font-weight: 600;
+            transition: var(--transition);
+            text-decoration: none;
+            font-size: 0.95rem;
+            display: inline-block;
+            text-align: center;
+            line-height: 1.5;
+        }
+        .btn-login-nav:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(201, 151, 76, 0.3);
+        }
+        .btn-nav {
+            padding: 0.4rem 1.2rem;
+            font-size: 0.95rem;
+            display: inline-block;
+            text-align: center;
+            line-height: 1.5;
+        }
+        .logo-img {
+            height: 45px;
+            width: auto;
+            display: block;
+        }
+        .logo-btn {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+        .footer-logo-img {
+            height: 40px;
+            width: auto;
+            display: block;
+        }
+        /* Active nav link color */
+        .nav-links a.active-link {
+            color: var(--primary-color) !important;
+        }
+        [data-theme="dark"] .nav-links a.active-link {
+            color: var(--primary-color) !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="spotlight"></div>
+    <div class="scroll-progress" id="scroll-progress"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <a href="index.html" class="logo-btn">
+            <img src="assets/images/stackly-logo.webp" class="logo-img" alt="Stackly Logo">
+        </a>
+        <button class="mobile-menu-btn"><i class="fa-solid fa-bars"></i></button>
+        <ul class="nav-links">
+            <li><a href="index.html" class="active-link">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="projects.html">Projects</a></li>
+            <li><a href="discoveries.html">Discoveries</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="login.html" class="btn-login-nav">Login</a></li>
+            <li><a href="signup.html" class="btn btn-nav">Sign Up</a></li>
+            <li>
+                <button id="theme-toggle" class="theme-toggle" aria-label="Toggle Theme">
+                    <i class="fa-solid fa-sun"></i>
+                </button>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- 1. Rich Hero Section -->
+    <section class="hero" id="home">
+        <img src="assets/images/b1 (1).webp" alt="Archaeological Excavation" class="hero-bg">
+        <div class="hero-overlay"></div>
+        <div class="particles-container"></div>
+        <div class="hero-content">
+            <h1>Uncovering the Secrets of Ancient Civilizations</h1>
+            <p>Join Stackly Archaeology on a journey through time, exploring forgotten ruins, unearthing ancient artifacts, and piecing together the history of humanity.</p>
+            <div class="hero-buttons">
+                <a href="404.html" class="btn">Explore Discoveries</a>
+                <a href="404.html" class="btn btn-outline">Visit Museum</a>
+            </div>
+            
+            <div class="stats-container" style="display:flex; flex-direction:row; justify-content:center; align-items:center; flex-wrap:nowrap; gap: 4rem; margin-top: 3rem; background: rgba(183, 110, 34, 0.4); backdrop-filter: blur(5px); padding: 1.5rem 3rem; border-radius: 12px; width: 100%; box-sizing: border-box; animation: fadeUp 1.6s ease forwards;">
+                <div class="stat-item" style="text-align: center;">
+                    <div class="stat-number" data-target="150" style="font-size: 2.5rem; font-weight: bold; line-height: 1;">0</div>
+                    <div class="stat-label" style="font-size: 1rem; margin-top:0.5rem; white-space:nowrap;">Sites Excavated</div>
+                </div>
+                <div class="stat-item" style="text-align: center;">
+                    <div class="stat-number" data-target="12000" style="font-size: 2.5rem; font-weight: bold; line-height: 1;">0</div>
+                    <div class="stat-label" style="font-size: 1rem; margin-top:0.5rem; white-space:nowrap;">Artifacts Found</div>
+                </div>
+                <div class="stat-item" style="text-align: center;">
+                    <div class="stat-number" data-target="45" style="font-size: 2.5rem; font-weight: bold; line-height: 1;">0</div>
+                    <div class="stat-label" style="font-size: 1rem; margin-top:0.5rem; white-space:nowrap;">Research Papers</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2. Featured Discoveries -->
+    <section id="discoveries">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Featured Discoveries</h2>
+            <div class="grid-3">
+                <div class="hover-card" data-aos="fade-up" data-aos-delay="100">
+                    <img src="assets/images/Golden Relic.webp" alt="Golden Relic">
+                    <h3>The Golden Sun Disk</h3>
+                    <p>Unearthed in the central plains, this intricate artifact suggests an advanced understanding of metallurgy and celestial movements.</p>
+                    <a href="404.html" style="color:var(--primary-color); text-decoration:none; margin-top:1rem; display:block; font-weight:600;">Read More <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+                <div class="hover-card" data-aos="fade-up" data-aos-delay="200">
+                    <img src="assets/images/Emerald Chalice.webp" style="filter: hue-rotate(90deg);" alt="Emerald Chalice">
+                    <h3>The Emerald Chalice</h3>
+                    <p>A ceremonial vessel discovered untouched in a hidden subterranean chamber dating back over three millennia.</p>
+                    <a href="404.html" style="color:var(--primary-color); text-decoration:none; margin-top:1rem; display:block; font-weight:600;">Read More <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+                <div class="hover-card" data-aos="fade-up" data-aos-delay="300">
+                    <img src="assets/images/Ceremonial Obsidian Blade.webp" style="filter: grayscale(100%) contrast(1.5);" alt="Obsidian Blade">
+                    <h3>Ceremonial Obsidian Blade</h3>
+                    <p>Flawlessly knapped and preserved in volcanic ash, providing crucial insight into early ritualistic practices.</p>
+                    <a href="404.html" style="color:var(--primary-color); text-decoration:none; margin-top:1rem; display:block; font-weight:600;">Read More <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. Civilization Timeline -->
+    <section id="timeline" style="background: var(--card-bg);">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Civilization Timeline</h2>
+            <div class="timeline">
+                <div class="timeline-item left" data-aos="fade-right">
+                    <div class="timeline-content">
+                        <h3>3500 BCE</h3>
+                        <p>The dawn of early settlements in the river valleys. Evidence of rudimentary agriculture and pottery.</p>
+                    </div>
+                </div>
+                <div class="timeline-item right" data-aos="fade-left">
+                    <div class="timeline-content">
+                        <h3>2100 BCE</h3>
+                        <p>Establishment of the first great dynasties. Monumental architecture begins to dominate the landscape.</p>
+                    </div>
+                </div>
+                <div class="timeline-item left" data-aos="fade-right">
+                    <div class="timeline-content">
+                        <h3>1450 BCE</h3>
+                        <p>The Golden Age. Expansion of trade routes brings exotic materials like lapis lazuli and gold into the empire.</p>
+                    </div>
+                </div>
+                <div class="timeline-item right" data-aos="fade-left">
+                    <div class="timeline-content">
+                        <h3>800 BCE</h3>
+                        <p>The mysterious collapse. Cities are abandoned, leaving behind ruins that we excavate today.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. Archaeological Sites -->
+    <section id="sites">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Archaeological Sites</h2>
+            <div class="grid-2">
+                <div data-aos="fade-right">
+                    <img src="assets/images/Global Excavation Grid.webp" alt="Site Map" style="width:100%; border-radius:12px; border:1px solid var(--glass-border);">
+                </div>
+                <div data-aos="fade-left">
+                    <h3 style="color:var(--primary-color); margin-bottom:1rem; font-size: 2rem;">Global Excavation Grid</h3>
+                    <p style="margin-bottom: 1.5rem; font-size: 1.1rem;">Stackly operates in over 12 countries. Our primary grid focuses on the Mediterranean basin, Mesoamerica, and the Indus Valley. We utilize advanced LIDAR and ground-penetrating radar to map subterranean structures before breaking ground.</p>
+                    <ul style="list-style: none; display:flex; flex-direction:column; gap:1rem;">
+                        <li><i class="fa-solid fa-location-dot" style="color:var(--primary-color);"></i> <strong>Site Alpha:</strong> The Sunken City of Kerya</li>
+                        <li><i class="fa-solid fa-location-dot" style="color:var(--primary-color);"></i> <strong>Site Beta:</strong> Highland Temple Complex</li>
+                        <li><i class="fa-solid fa-location-dot" style="color:var(--primary-color);"></i> <strong>Site Gamma:</strong> The Desert Tombs</li>
+                    </ul>
+                    <a href="404.html" class="btn" style="margin-top: 2rem;">View All Sites</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. Research & Excavation Projects -->
+    <section id="research" style="background: var(--card-bg);">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Research & Projects</h2>
+            <div class="grid-3">
+                <div class="hover-card" data-aos="flip-left">
+                    <div style="height:150px; background:var(--bg-color); border-radius:8px; display:flex; align-items:center; justify-content:center; margin-bottom:1rem; border:1px solid var(--glass-border);">
+                        <i class="fa-solid fa-flask fa-3x" style="color:var(--primary-color)"></i>
+                    </div>
+                    <h3>Isotope Analysis</h3>
+                    <p>Ongoing project analyzing bone fragments to determine ancient diets and migration patterns.</p>
+                </div>
+                <div class="hover-card" data-aos="flip-left" data-aos-delay="100">
+                    <div style="height:150px; background:var(--bg-color); border-radius:8px; display:flex; align-items:center; justify-content:center; margin-bottom:1rem; border:1px solid var(--glass-border);">
+                        <i class="fa-solid fa-map fa-3x" style="color:var(--primary-color)"></i>
+                    </div>
+                    <h3>LIDAR Mapping</h3>
+                    <p>Completed survey of the Yucatan peninsula revealing over 60,000 previously unknown structures.</p>
+                </div>
+                <div class="hover-card" data-aos="flip-left" data-aos-delay="200">
+                    <div style="height:150px; background:var(--bg-color); border-radius:8px; display:flex; align-items:center; justify-content:center; margin-bottom:1rem; border:1px solid var(--glass-border);">
+                        <i class="fa-solid fa-book fa-3x" style="color:var(--primary-color)"></i>
+                    </div>
+                    <h3>Epigraphy Project</h3>
+                    <p>Translating newly discovered clay tablets that detail the economic laws of the Bronze Age.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. Museum Collection (Swiper Carousel) -->
+    <section id="museum">
+        <div class="container">
+            <h2 class="section-title">Museum Collection</h2>
+            <div class="swiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide" style="background-image: url('assets/images/The\ Grand\ Hall.webp');">
+                        <div style="z-index: 1;">
+                            <h3>The Grand Hall</h3>
+                            <p>Showcasing our largest monolithic findings.</p>
+                        </div>
+                    </div>
+                    <div class="swiper-slide" style="background-image: url('assets/images/The\ Gold\ Room.webp');">
+                        <div style="z-index: 1;">
+                            <h3>The Gold Room</h3>
+                            <p>Precious metals and ceremonial jewelry.</p>
+                        </div>
+                    </div>
+                    <div class="swiper-slide" style="background-image: url('assets/images/Pottery\ &\ Ceramics.webp'); filter: hue-rotate(180deg)">
+                        <div style="z-index: 1;">
+                            <h3>Pottery & Ceramics</h3>
+                            <p>Everyday life reconstructed from fragments.</p>
+                        </div>
+                    </div>
+                    <div class="swiper-slide" style="background-image: url('assets/images/Ancient\ Sculptures.webp'); filter: hue-rotate(90deg)">
+                        <div style="z-index: 1;">
+                            <h3>Ancient Sculptures</h3>
+                            <p>Marble and stone carvings from the classical era.</p>
+                        </div>
+                    </div>
+                    <div class="swiper-slide" style="background-image: url('assets/images/Royal\ Jewelry.webp'); filter: hue-rotate(270deg)">
+                        <div style="z-index: 1;">
+                            <h3>Royal Jewelry</h3>
+                            <p>Crown jewels and ceremonial ornaments of ancient kings.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Add Pagination -->
+                <div class="swiper-pagination"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. Latest News & Findings & Testimonials -->
+    <section id="news" style="background: var(--card-bg);">
+        <div class="container">
+            <div class="grid-2">
+                <div data-aos="fade-right">
+                    <h2 class="section-title" style="text-align: left;">Latest News & Findings</h2>
+                    <div style="display:flex; flex-direction:column; gap:1.5rem;">
+                        <article style="border-bottom: 1px solid var(--glass-border); padding-bottom: 1rem;">
+                            <span style="color:var(--primary-color); font-size:0.9rem; font-weight:600;">October 12, 2026</span>
+                            <h4 style="font-size:1.3rem; margin:0.5rem 0;">Breakthrough in Rosetta Translation</h4>
+                            <p>Researchers at Stackly have utilized AI to decode the remaining fragments of the northern stele.</p>
+                        </article>
+                        <article style="border-bottom: 1px solid var(--glass-border); padding-bottom: 1rem;">
+                            <span style="color:var(--primary-color); font-size:0.9rem; font-weight:600;">September 28, 2026</span>
+                            <h4 style="font-size:1.3rem; margin:0.5rem 0;">New Tomb Discovered in Valley 4</h4>
+                            <p>A completely sealed tomb dating back to the late kingdom period has been identified.</p>
+                        </article>
+                    </div>
+                </div>
+                <div data-aos="fade-left">
+                    <h2 class="section-title" style="text-align: left;">Testimonials & Partners</h2>
+                    <div style="background: var(--bg-color); padding: 2rem; border-radius: 8px; border: 1px solid var(--glass-border); margin-bottom:2rem;">
+                        <i class="fa-solid fa-quote-left fa-2x" style="color:var(--primary-color); margin-bottom:1rem; opacity:0.5"></i>
+                        <p style="font-style: italic; margin-bottom:1rem;">"Stackly's approach to digital preservation and ethical excavation has set a new standard in modern archaeology."</p>
+                        <h5 style="color:var(--primary-color); margin:0;">Dr. Aris Thorne</h5>
+                        <span style="font-size:0.9rem;">Professor of Antiquity, Global Heritage University</span>
+                    </div>
+                    <div style="display:flex; gap: 1rem; align-items:center;">
+                        <span style="font-weight:600; margin-right:1rem;">Partners:</span>
+                        <i class="fa-brands fa-aws fa-2x" style="color:var(--text-color); opacity:0.6;"></i>
+                        <i class="fa-solid fa-building-columns fa-2x" style="color:var(--text-color); opacity:0.6;"></i>
+                        <i class="fa-solid fa-globe fa-2x" style="color:var(--text-color); opacity:0.6;"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <a href="index.html" style="margin-bottom: 1rem; display: inline-block;">
+                        <img src="assets/images/stackly-logo.webp" class="footer-logo-img" alt="Stackly Logo">
+                    </a>
+                    <p>Stackly Archaeology is dedicated to the ethical discovery, preservation, and study of ancient human history. We bridge the gap between the past and the future.</p>
+                    <div class="footer-socials" style="display: flex; gap: 1rem; margin-top: 0.5rem;">
+                        <a href="404.html" title="Facebook" style="color: var(--text-color); font-size: 1.2rem; transition: color 0.3s;" onmouseover="this.style.color='var(--primary-color)'" onmouseout="this.style.color='var(--text-color)'"><i class="fa-brands fa-facebook"></i></a>
+                        <a href="404.html" title="Twitter" style="color: var(--text-color); font-size: 1.2rem; transition: color 0.3s;" onmouseover="this.style.color='var(--primary-color)'" onmouseout="this.style.color='var(--text-color)'"><i class="fa-brands fa-twitter"></i></a>
+                        <a href="404.html" title="Instagram" style="color: var(--text-color); font-size: 1.2rem; transition: color 0.3s;" onmouseover="this.style.color='var(--primary-color)'" onmouseout="this.style.color='var(--text-color)'"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="404.html" title="LinkedIn" style="color: var(--text-color); font-size: 1.2rem; transition: color 0.3s;" onmouseover="this.style.color='var(--primary-color)'" onmouseout="this.style.color='var(--text-color)'"><i class="fa-brands fa-linkedin"></i></a>
+                        <a href="404.html" title="YouTube" style="color: var(--text-color); font-size: 1.2rem; transition: color 0.3s;" onmouseover="this.style.color='var(--primary-color)'" onmouseout="this.style.color='var(--text-color)'"><i class="fa-brands fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="projects.html">Projects</a></li>
+                        <li><a href="discoveries.html">Discoveries</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Research</h4>
+                    <ul>
+                        <li><a href="404.html">Publications</a></li>
+                        <li><a href="404.html">Methodology</a></li>
+                        <li><a href="404.html">Grants</a></li>
+                        <li><a href="404.html">Partner Universities</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li><i class="fa-solid fa-envelope"></i> hello@stackly.com</li>
+                        <li><i class="fa-solid fa-phone"></i> +91 98765 43210</li>
+                        <li><i class="fa-solid fa-location-dot"></i> MMR Complex, Near Chinna Thirupathi, Salem, Tamil Nadu 636008</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; margin-top: 2rem; padding-top: 1rem; border-top: 1px solid var(--glass-border);">
+                <p style="margin: 0;">&copy; 2026 Stackly Archaeology. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <button id="backToTop" aria-label="Back to Top"><i class="fa-solid fa-arrow-up"></i></button>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

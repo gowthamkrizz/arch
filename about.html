@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | Stackly Archaeology</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .btn-login-nav {
+            background: var(--primary-color);
+            color: #fff;
+            padding: 0.4rem 1.2rem;
+            border-radius: 4px;
+            font-weight: 600;
+            transition: var(--transition);
+            text-decoration: none;
+            font-size: 0.95rem;
+            display: inline-block;
+            text-align: center;
+            line-height: 1.5;
+        }
+        .btn-login-nav:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(201, 151, 76, 0.3);
+        }
+        .btn-nav {
+            padding: 0.4rem 1.2rem;
+            font-size: 0.95rem;
+            display: inline-block;
+            text-align: center;
+            line-height: 1.5;
+        }
+        /* About page hero - full size like home page */
+        .hero-about {
+            min-height: 100vh !important;
+            height: 100vh !important;
+            padding-bottom: 6rem !important;
+        }
+        .hero-about .hero-content h1 {
+            font-size: 4rem !important;
+        }
+        .hero-about .hero-content p {
+            font-size: 1.2rem !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="spotlight"></div>
+    <div class="scroll-progress" id="scroll-progress"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <a href="index.html" class="logo-btn">
+    <img src="assets/images/stackly-logo.webp" class="logo-img" alt="Stackly Logo">
+</a>
+        <button class="mobile-menu-btn"><i class="fa-solid fa-bars"></i></button>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html" style="color:var(--primary-color)">About Us</a></li>
+            <li><a href="projects.html">Projects</a></li>
+            <li><a href="discoveries.html">Discoveries</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="login.html" class="btn-login-nav">Login</a></li>
+            <li><a href="signup.html" class="btn btn-nav">Sign Up</a></li>
+            <li><button id="theme-toggle" class="theme-toggle"><i class="fa-solid fa-sun"></i></button></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Banner - Full Size like Home Page -->
+    <!-- Hero Banner -->
+<section class="hero hero-about">
+    <img src="assets/images/b1 (2).webp" alt="About Stackly" class="hero-bg">
+    <div class="hero-overlay"></div>
+    <div class="particles-container"></div>
+    <div class="hero-content">
+        <h1>About Stackly</h1>
+        <p>Pioneering modern archaeology through technology and ethical preservation.</p>
+        <div class="hero-buttons">
+            <a href="404.html" class="btn">Explore Our Work</a>
+            <a href="404.html" class="btn btn-outline">Get In Touch</a>
+        </div>
+    </div>
+</section>
+
+    <!-- Section 1: Our Story -->
+    <section id="story">
+        <div class="container">
+            <div class="grid-2">
+                <div data-aos="fade-right">
+                    <h2 class="section-title" style="text-align: left;">Our Story</h2>
+                    <p>Founded in 2010 by a collective of visionary researchers, Stackly Archaeology began as a small initiative to bring modern technology into the field of antiquity. Over the years, we've grown into a global organization, leading expeditions across four continents.</p>
+                    <p style="margin-top: 1rem;">Our breakthrough came in 2015 with the discovery of the Sunken City of Kerya, where our unique blend of LIDAR and marine robotics allowed us to map an entire civilization without disturbing the delicate marine ecosystem.</p>
+                </div>
+                <div data-aos="fade-left">
+                    <img src="assets/images/b1 (2).webp" style="width:100%; border-radius:12px; border:1px solid var(--glass-border);" alt="Our Origins">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 2: Mission & Vision -->
+    <section id="mission" style="background: var(--card-bg);">
+        <div class="container text-center">
+            <h2 class="section-title" data-aos="fade-up">Mission & Vision</h2>
+            <div class="grid-2">
+                <div class="hover-card" data-aos="fade-up" data-aos-delay="100">
+                    <i class="fa-solid fa-bullseye fa-3x" style="color:var(--primary-color); margin-bottom:1rem;"></i>
+                    <h3>Our Mission</h3>
+                    <p>To uncover the truth of our past through rigorous, ethical, and technologically advanced excavation, ensuring that the legacy of ancient civilizations is preserved for future generations.</p>
+                </div>
+                <div class="hover-card" data-aos="fade-up" data-aos-delay="200">
+                    <i class="fa-solid fa-eye fa-3x" style="color:var(--primary-color); margin-bottom:1rem;"></i>
+                    <h3>Our Vision</h3>
+                    <p>A world where history is accessible to all, where the artifacts of the past inform the decisions of the future, and where cultural heritage is protected unconditionally.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 3: Research Methodology -->
+    <section id="methodology">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Research Methodology</h2>
+            <div class="grid-3">
+                <div class="hover-card" data-aos="zoom-in">
+                    <h4>1. Non-Invasive Surveying</h4>
+                    <p>Using LIDAR, ground-penetrating radar, and satellite imagery to identify sites before any soil is moved.</p>
+                </div>
+                <div class="hover-card" data-aos="zoom-in" data-aos-delay="100">
+                    <h4>2. Precision Excavation</h4>
+                    <p>Employing micro-stratigraphy and robotic assistance to uncover delicate artifacts without damage.</p>
+                </div>
+                <div class="hover-card" data-aos="zoom-in" data-aos-delay="200">
+                    <h4>3. Digital Preservation</h4>
+                    <p>3D scanning every find to create a permanent, accessible digital archive for researchers worldwide.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 4: Meet Our Experts -->
+    <section id="experts" style="background: var(--card-bg);">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Meet Our Experts</h2>
+            <div class="grid-3">
+                <div class="team-member hover-card" data-aos="fade-up">
+                    <img src="assets/images/Dr. Elias Vance.webp" alt="Dr. Elias Vance">
+                    <h3>Dr. Elias Vance</h3>
+                    <p style="color:var(--primary-color); font-weight:600; margin-bottom:0.5rem;">Chief Archaeologist</p>
+                    <p>Specialist in Mesoamerican linguistics and ceremonial architecture.</p>
+                </div>
+                <div class="team-member hover-card" data-aos="fade-up" data-aos-delay="100">
+                    <img src="assets/images/Dr. Sarah Lin.webp" alt="Dr. Sarah Lin">
+                    <h3>Dr. Sarah Lin</h3>
+                    <p style="color:var(--primary-color); font-weight:600; margin-bottom:0.5rem;">Director of Geophysics</p>
+                    <p>Pioneer in adapting satellite imaging for subterranean discovery.</p>
+                </div>
+                <div class="team-member hover-card" data-aos="fade-up" data-aos-delay="200">
+                    <img src="assets/images/Prof. Marcus Thorne.webp" alt="Prof. Marcus Thorne">
+                    <h3>Prof. Marcus Thorne</h3>
+                    <p style="color:var(--primary-color); font-weight:600; margin-bottom:0.5rem;">Head of Epigraphy</p>
+                    <p>Leading expert in decoding ancient Mediterranean scripts.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 5: Achievements & Statistics -->
+    <section id="achievements">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Achievements & Statistics</h2>
+            <div class="stats-container" data-aos="fade-up">
+                <div class="stat-item">
+                    <div class="stat-number" data-target="15">0</div>
+                    <div class="stat-label">Years Active</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-target="8">0</div>
+                    <div class="stat-label">Global Awards</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-target="2500">0</div>
+                    <div class="stat-label">3D Scans</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-target="12">0</div>
+                    <div class="stat-label">Countries</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <a href="index.html" style="margin-bottom: 1rem; display: inline-block;">
+    <img src="assets/images/stackly-logo.webp" class="footer-logo-img" alt="Stackly Logo">
+</a>
+                    <p>Stackly Archaeology is dedicated to the ethical discovery, preservation, and study of ancient human history.</p>
+                    <div class="footer-socials" style="display: flex; gap: 1rem; margin-top: 0.5rem;">
+                    <a href="404.html" title="Facebook" style="color: var(--text-color); font-size: 1.2rem; transition: color 0.3s;" onmouseover="this.style.color='var(--primary-color)'" onmouseout="this.style.color='var(--text-color)'"><i class="fa-brands fa-facebook"></i></a>
+                    <a href="404.html" title="Twitter" style="color: var(--text-color); font-size: 1.2rem; transition: color 0.3s;" onmouseover="this.style.color='var(--primary-color)'" onmouseout="this.style.color='var(--text-color)'"><i class="fa-brands fa-twitter"></i></a>
+                    <a href="404.html" title="Instagram" style="color: var(--text-color); font-size: 1.2rem; transition: color 0.3s;" onmouseover="this.style.color='var(--primary-color)'" onmouseout="this.style.color='var(--text-color)'"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="404.html" title="LinkedIn" style="color: var(--text-color); font-size: 1.2rem; transition: color 0.3s;" onmouseover="this.style.color='var(--primary-color)'" onmouseout="this.style.color='var(--text-color)'"><i class="fa-brands fa-linkedin"></i></a>
+                    <a href="404.html" title="YouTube" style="color: var(--text-color); font-size: 1.2rem; transition: color 0.3s;" onmouseover="this.style.color='var(--primary-color)'" onmouseout="this.style.color='var(--text-color)'"><i class="fa-brands fa-youtube"></i></a>
+                </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="projects.html">Projects</a></li>
+                        <li><a href="discoveries.html">Discoveries</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Research</h4>
+                    <ul>
+                        <li><a href="404.html">Publications</a></li>
+                        <li><a href="404.html">Methodology</a></li>
+                        <li><a href="404.html">Grants</a></li>
+                        <li><a href="404.html">Partner Universities</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li><i class="fa-solid fa-envelope"></i> hello@stackly.com</li>
+                        <li><i class="fa-solid fa-phone"></i> +91 98765 43210</li>
+                        <li><i class="fa-solid fa-location-dot"></i> MMR Complex, Near Chinna Thirupathi, Salem, Tamil Nadu 636008</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; margin-top: 2rem; padding-top: 1rem; border-top: 1px solid var(--glass-border);">
+                <p style="margin: 0;">&copy; 2026 Stackly Archaeology. All rights reserved.</p>
+                
+            </div>
+        </div>
+    </footer>
+
+    <button id="backToTop" aria-label="Back to Top"><i class="fa-solid fa-arrow-up"></i></button>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
